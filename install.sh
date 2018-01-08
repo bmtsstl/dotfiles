@@ -5,7 +5,7 @@ DOTFILES="${HOME}/.dotfiles"
 GIT_REPOSITORY='https://github.com/ryouser/dotfiles.git'
 ZIP_URL='https://github.com/ryouser/dotfiles/archive/master.zip'
 
-if ! which git; then
+if ! which git >/dev/null; then
 	echo 'git is not installed or not in the $PATH' >&2
 	exit 1
 fi

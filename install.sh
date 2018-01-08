@@ -15,4 +15,4 @@ cd "${DOTFILES}"
 git config user.name 'ryouser'
 git config user.email '35141868+ryouser@users.noreply.github.com'
 
-"${DOTFILES}/deploy"
+"${DOTFILES}/deploy.sh"

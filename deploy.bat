@@ -1,4 +1,4 @@
 @echo off
 mkdir "%USERPROFILE%\vimfiles"
-mklink /H "%USERPROFILE%\vimfiles\vimrc" "%~dp0dotfiles\vimrc"
-mklink /H "%USERPROFILE%\vimfiles\gvimrc" "%~dp0dotfiles\gvimrc"
+mklink "%USERPROFILE%\vimfiles\vimrc" "%~dp0dotfiles\vimrc"
+mklink "%USERPROFILE%\vimfiles\gvimrc" "%~dp0dotfiles\gvimrc"

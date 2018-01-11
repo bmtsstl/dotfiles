@@ -1,6 +1,6 @@
 #/bin/bash
-SCRIPT_DIR="$(cd $(dirname $0); pwd)/dotfiles"
+DOTFILES="$(cd $(dirname $0); pwd)/dotfiles"
 
 mkdir -pm 700 ~/.vim
-ln -s ${SCRIPT_DIR}/vimrc ~/.vim/vimrc
-ln -s ${SCRIPT_DIR}/gvimrc ~/.vim/gvimrc
+ln -s ${DOTFILES}/vimrc ~/.vim/vimrc
+ln -s ${DOTFILES}/gvimrc ~/.vim/gvimrc

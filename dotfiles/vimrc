@@ -99,8 +99,6 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 		Plug 'ctrlpvim/ctrlp.vim'
 		Plug 'cocopon/vaffle.vim'
 		Plug 'tpope/vim-fugitive'
-		Plug 'prabirshrestha/asyncomplete.vim'
-		Plug 'yami-beta/asyncomplete-omni.vim'
 		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim'         | endif
 		if executable('go')                  | Plug 'fatih/vim-go', { 'tag': '*' } | endif
 		if has('gui_running')                | Plug 'w0ng/vim-hybrid'              | endif
@@ -122,22 +120,6 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 	if s:plugged('vaffle.vim')
 		let g:vaffle_force_delete = 1
 		let g:vaffle_show_hidden_files = 1
-	endif
-
-	if s:plugged('asyncomplete.vim')
-		inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-		inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-		inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-		set completeopt-=preview
-	endif
-
-	if s:installed('asyncomplete-omni.vim')
-		call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-			\ 'name': 'omni',
-			\ 'whitelist': ['*'],
-			\ 'blacklist': ['html'],
-			\ 'completor': function('asyncomplete#sources#omni#completor')
-			\  }))
 	endif
 
 	if s:plugged('vim-go')

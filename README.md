@@ -6,4 +6,4 @@ curl -sfL 'https://raw.githubusercontent.com/ryouser/dotfiles/master/install.sh'
 ```bat
 git clone "https://github.com/ryouser/dotfiles.git" "%USERPROFILE%\.dotfiles"
 ```
-Then run `install.bat` as administrator.
+Then run `install.bat` as an administrator.

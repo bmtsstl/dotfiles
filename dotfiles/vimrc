@@ -118,6 +118,8 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 		let g:ctrlp_extensions = ['dir']
 		let g:ctrlp_by_filename = 1
 		let g:ctrlp_show_hidden = 1
+		if has('unix') && executable('find') | let g:ctrlp_user_command = 'find %s -type f' | endif
+		if has('win32') | let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' | endif
 	endif
 
 	if s:plugged('vaffle.vim')

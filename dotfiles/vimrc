@@ -81,6 +81,7 @@ set cursorline
 set wildmenu
 set wildchar=<Tab>
 set background=dark
+set lazyredraw
 
 " mapping
 nnoremap <C-h> <C-w>h

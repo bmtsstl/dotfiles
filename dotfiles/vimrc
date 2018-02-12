@@ -135,8 +135,6 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 		let g:go_fmt_autosave = 0
 		let g:go_metalinter_autosave = 0
 		autocmd vimrc bufwritepost *.go GoImports
-		autocmd vimrc bufwritepost *.go GoVet
-		autocmd vimrc bufwritepost *.go GoBuild
 	endif
 
 	if s:installed('vim-hybrid')

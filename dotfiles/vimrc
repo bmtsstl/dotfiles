@@ -15,18 +15,21 @@ augroup vimrc
 	autocmd!
 augroup END
 
-" directories
+" files & directories
 let s:slash = '/'
 if has('win32') | let s:slash = '\' | endif
 let s:dir_vim      = expand('<sfile>:p:h')
 let s:dir_autoload = s:dir_vim.s:slash.'autoload'
 let s:dir_cache    = s:dir_vim.s:slash.'cache'
 
-let s:dir_info   = s:dir_cache
 let s:dir_plug   = s:dir_cache.s:slash.'plug'
 let s:dir_backup = s:dir_cache.s:slash.'backup'
 let s:dir_swap   = s:dir_cache.s:slash.'swap'
 let s:dir_undo   = s:dir_cache.s:slash.'undo'
+
+let s:file_local = s:dir_vim.s:slash.'vimrc.local'
+let s:file_plug  = s:dir_autoload.s:slash.'plug.vim'
+let s:file_info  = s:dir_cache.s:slash.'info'
 
 " mkdir
 function! s:mkdir(dir) abort
@@ -45,7 +48,7 @@ call s:mkdir(s:dir_undo)
 " ----- preferences -----------------------------
 
 " files
-execute 'set viminfo+=n'.s:dir_info.'/info'
+execute 'set viminfo+=n'.s:file_info
 execute 'set backupdir^='.s:dir_backup
 execute 'set directory^='.s:dir_swap
 execute 'set undodir^='.s:dir_undo
@@ -94,12 +97,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " ----- plugins ---------------------------------
-if isdirectory(s:dir_autoload) && !filereadable(s:dir_autoload.'/plug.vim') && executable('curl')
-	silent execute '!curl -fLo '.s:dir_autoload.'/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('curl')
+	silent execute '!curl -fLo '.s:file_plug.' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	redraw!
 endif
 
-if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && executable('git')
+if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" initialize
 	call plug#begin(s:dir_plug)
 		Plug 'ctrlpvim/ctrlp.vim'
@@ -145,6 +148,6 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 endif
 
 " --- local -------------------------------------
-if filereadable(s:dir_vim.'/vimrc.local')
-	execute 'source '.s:dir_vim.'/vimrc.local'
+if filereadable(s:file_local)
+	execute 'source '.s:file_local
 endif

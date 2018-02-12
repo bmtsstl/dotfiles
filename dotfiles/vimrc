@@ -106,6 +106,7 @@ if isdirectory(s:dir_plug) && filereadable(s:dir_autoload.'/plug.vim') && execut
 		Plug 'tpope/vim-fugitive'
 		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim' | endif
 		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*' } | endif
+		if executable('rustc') | Plug 'rust-lang/rust.vim' | endif
 		if !has('win32') || has('gui_running') | Plug 'w0ng/vim-hybrid' | endif
 	call plug#end()
 

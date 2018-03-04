@@ -48,7 +48,7 @@ call s:mkdir(s:dir_undo)
 " ----- preferences -----------------------------
 
 " files
-execute 'set viminfo+=n'.s:file_info
+execute 'set viminfo+=n'.escape(s:file_info, '\')
 execute 'set backupdir^='.s:dir_backup
 execute 'set directory^='.s:dir_swap
 execute 'set undodir^='.s:dir_undo

@@ -105,7 +105,6 @@ endif
 if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" initialize
 	call plug#begin(s:dir_plug)
-		Plug 'ctrlpvim/ctrlp.vim'
 		Plug 'cocopon/vaffle.vim'
 		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim' | endif
 		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*' } | endif
@@ -120,15 +119,6 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	function! s:installed(name)
 		return has_key(g:plugs, a:name) && isdirectory(g:plugs[a:name]['dir'])
 	endfunction
-
-	if s:plugged('ctrlp.vim')
-		let g:ctrlp_types = ['fil']
-		let g:ctrlp_extensions = ['dir']
-		let g:ctrlp_by_filename = 1
-		let g:ctrlp_show_hidden = 1
-		if has('unix') && executable('find') | let g:ctrlp_user_command = 'find %s -type f' | endif
-		if has('win32') | let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' | endif
-	endif
 
 	if s:plugged('vaffle.vim')
 		let g:vaffle_force_delete = 1

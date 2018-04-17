@@ -107,7 +107,6 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	call plug#begin(s:dir_plug)
 		Plug 'ctrlpvim/ctrlp.vim'
 		Plug 'cocopon/vaffle.vim'
-		Plug 'tpope/vim-fugitive'
 		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim' | endif
 		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*' } | endif
 		if executable('rustc') | Plug 'rust-lang/rust.vim' | endif

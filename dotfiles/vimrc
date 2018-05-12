@@ -45,6 +45,9 @@ call s:mkdir(s:dir_backup)
 call s:mkdir(s:dir_swap)
 call s:mkdir(s:dir_undo)
 
+" runtimepath
+execute 'set runtimepath-='.s:dir_vim.' runtimepath^='.s:dir_vim
+
 " ----- preferences -----------------------------
 
 " files

@@ -73,7 +73,7 @@ if has('gui_win32') | set guifont=MS_Gothic:h10 | endif
 
 " file handling
 filetype plugin indent on
-set fencs-=ucs-bom fencs-=utf-8 fencs^=utf-8 fencs^=ucs-bom
+set fencs-=ucs-bom fencs-=utf-8 fencs-=cp932 fencs^=cp932 fencs^=utf-8 fencs^=ucs-bom
 set ffs-=unix ffs^=unix
 set autoread
 set hidden

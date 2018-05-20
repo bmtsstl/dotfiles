@@ -88,6 +88,7 @@ set pumheight=10
 set laststatus=1
 set ruler
 set cursorline
+set hlsearch
 set wildmenu
 set wildchar=<Tab>
 set background=dark

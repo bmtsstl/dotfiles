@@ -78,7 +78,7 @@ set ffs-=unix ffs^=unix
 set autoread
 set hidden
 
-" ui
+" view
 syntax enable
 set number
 set tabstop=4

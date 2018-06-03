@@ -84,6 +84,7 @@ set number
 set tabstop=4
 set shiftwidth=4
 let g:vim_indent_cont = 4
+set scrolloff=5
 set pumheight=10
 set laststatus=1
 set ruler

@@ -116,7 +116,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'cocopon/vaffle.vim'
 		Plug 'thinca/vim-quickrun'
 		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim' | endif
-		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*' } | endif
+		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' } | endif
 		if executable('rustc') | Plug 'rust-lang/rust.vim' | endif
 		if !has('win32') || has('gui_running') | Plug 'w0ng/vim-hybrid' | endif
 	call plug#end()

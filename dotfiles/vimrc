@@ -54,7 +54,7 @@ execute 'set runtimepath-='.s:dir_vim.' runtimepath^='.s:dir_vim
 execute 'set viminfo+=n'.escape(s:file_info, '\')
 execute 'set backupdir^='.s:dir_backup
 execute 'set directory^='.s:dir_swap
-execute 'set undodir^='.s:dir_undo
+if has('persistent_undo') | execute 'set undodir^='.s:dir_undo | endif
 
 " gui
 set guioptions-=a guioptions-=P guioptions-=A

@@ -50,11 +50,24 @@ execute 'set runtimepath-='.s:dir_vim.' runtimepath^='.s:dir_vim
 
 " ----- preferences -----------------------------
 
-" files
-execute 'set viminfo+=n'.escape(s:file_info, '\')
+" viminfo
+if has('viminfo')
+	execute 'set viminfo+=n'.escape(s:file_info, '\')
+endif
+
+" backup
 execute 'set backupdir^='.s:dir_backup
+set backup writebackup
+
+" swap
 execute 'set directory^='.s:dir_swap
-if has('persistent_undo') | execute 'set undodir^='.s:dir_undo | endif
+set swapfile
+
+" undo
+if has('persistent_undo')
+	execute 'set undodir^='.s:dir_undo
+	set undofile
+endif
 
 " gui
 set guioptions-=a guioptions-=P guioptions-=A

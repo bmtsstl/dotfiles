@@ -123,38 +123,41 @@ if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('curl
 endif
 
 if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
-	" initialize
 	call plug#begin(s:dir_plug)
-		Plug 'cocopon/vaffle.vim'
-		Plug 'thinca/vim-quickrun'
-		if has('unix') && executable('sudo') | Plug 'vim-scripts/sudo.vim' | endif
-		if executable('go') | Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' } | endif
-		if executable('rustc') | Plug 'rust-lang/rust.vim' | endif
-		if !has('win32') || has('gui_running') | Plug 'w0ng/vim-hybrid' | endif
-	call plug#end()
 
-	" functions
-	function! s:plugged(name)
-		return has_key(g:plugs, a:name)
-	endfunction
-	function! s:installed(name)
-		return has_key(g:plugs, a:name) && isdirectory(g:plugs[a:name]['dir'])
-	endfunction
+	" vaffle.vim
+	Plug 'cocopon/vaffle.vim'
+	let g:vaffle_force_delete = 1
+	let g:vaffle_show_hidden_files = 1
 
-	if s:plugged('vaffle.vim')
-		let g:vaffle_force_delete = 1
-		let g:vaffle_show_hidden_files = 1
+	" vim-quickrun
+	Plug 'thinca/vim-quickrun'
+
+	" sudo.vim
+	if has('unix') && executable('sudo')
+		Plug 'vim-scripts/sudo.vim'
 	endif
 
-	if s:plugged('vim-go')
+	" vim-go
+	if executable('go')
+		Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
 		let g:go_fmt_autosave = 0
 		let g:go_metalinter_autosave = 0
 		autocmd vimrc bufwritepost *.go GoImports
 	endif
 
-	if s:installed('vim-hybrid')
-		colorscheme hybrid
+	" rust.vim
+	if executable('rustc')
+		Plug 'rust-lang/rust.vim'
 	endif
+
+	" vim-hybrid
+	if !has('win32') || has('gui_running')
+		Plug 'w0ng/vim-hybrid'
+		autocmd vimrc vimenter * colorscheme hybrid
+	endif
+
+	call plug#end()
 endif
 
 " --- local -------------------------------------

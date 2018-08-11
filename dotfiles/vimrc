@@ -151,6 +151,14 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'rust-lang/rust.vim'
 	endif
 
+	" python-mode
+	if executable('python') && (has('python') || has('python3'))
+		Plug 'python-mode/python-mode', { 'branch': 'develop' }
+		autocmd vimrc bufwritepost *.py PymodeLintAuto
+		let g:pymode_lint_on_write = 0
+		let g:pymode_rope = 0
+	endif
+
 	" vim-hybrid
 	if !has('win32') || has('gui_running')
 		Plug 'w0ng/vim-hybrid'

@@ -36,8 +36,8 @@ function! s:mkdir(dir) abort
 	endif
 endfunction
 
-call s:mkdir(s:dir_cache)
 call s:mkdir(s:dir_autoload)
+call s:mkdir(s:dir_cache)
 call s:mkdir(s:dir_plug)
 call s:mkdir(s:dir_backup)
 call s:mkdir(s:dir_swap)
@@ -78,8 +78,14 @@ set guioptions-=r guioptions-=R
 set guioptions-=l guioptions-=L
 set guioptions-=b
 set guioptions-=F
-if has('gui_win32') | set guifont=MS_Gothic:h10 | endif
-if has('directx') | set renderoptions=type:directx | endif
+
+if has('gui_win32')
+   	set guifont=MS_Gothic:h10
+endif
+
+if has('directx')
+   	set renderoptions=type:directx
+endif
 
 " file handling
 filetype plugin indent on

@@ -156,7 +156,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	endif
 
 	" python-mode
-	if executable('python') && (has('python') || has('python3'))
+	if executable('python') && (has('python3') || has('python'))
 		Plug 'python-mode/python-mode', { 'branch': 'develop' }
 		autocmd vimrc bufwritepost *.py PymodeLintAuto
 		let g:pymode_lint_on_write = 0

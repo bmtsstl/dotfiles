@@ -165,6 +165,12 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" python-mode
 	if executable('python') && (has('python3') || has('python'))
 		Plug 'python-mode/python-mode', { 'branch': 'develop' }
+		if has('python3')
+			let g:pymode_python = 'python3'
+		else
+			let g:pymode_python = 'python'
+		endif
+
 		autocmd vimrc bufwritepost *.py PymodeLintAuto
 		let g:pymode_lint_on_write = 0
 		let g:pymode_rope = 0

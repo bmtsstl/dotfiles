@@ -178,7 +178,22 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 		autocmd vimrc bufwritepost *.py PymodeLintAuto
 		let g:pymode_lint_on_write = 0
-		let g:pymode_rope = 0
+
+		let g:pymode_rope = 1
+		let g:pymode_rope_completion = 1
+		let g:pymode_rope_completion_on_dot = 0
+		let g:pymode_rope_completion_bind = ''
+		let g:pymode_rope_goto_definition_bind = '<C-]>'
+		let g:pymode_rope_rename_bind = ''
+		let g:pymode_rope_rename_module_bind = ''
+		let g:pymode_rope_organize_imports_bind = ''
+		let g:pymode_rope_autoimport_bind = ''
+		let g:pymode_rope_module_to_package_bind = ''
+		let g:pymode_rope_extract_method_bind = ''
+		let g:pymode_rope_extract_variable_bind = ''
+		let g:pymode_rope_use_function_bind = ''
+		let g:pymode_rope_move_bind = ''
+		let g:pymode_rope_change_signature_bind = ''
 	endif
 
 	" vim-hybrid

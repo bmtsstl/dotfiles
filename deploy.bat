@@ -1,10 +1,10 @@
 @echo off
-mkdir "%USERPROFILE%\vimfiles"
+mkdir "%HOMEDRIVE%%HOMEPATH%\vimfiles"
 
-del "%USERPROFILE%\vimfiles\vimrc"
-mklink "%USERPROFILE%\vimfiles\vimrc" "%~dp0dotfiles\vimrc"
-if %ERRORLEVEL% NEQ 0 copy "%~dp0dotfiles\vimrc" "%USERPROFILE%\vimfiles\vimrc"
+del "%HOMEDRIVE%%HOMEPATH%\vimfiles\vimrc"
+mklink "%HOMEDRIVE%%HOMEPATH%\vimfiles\vimrc" "%~dp0dotfiles\vimrc"
+if %ERRORLEVEL% NEQ 0 copy "%~dp0dotfiles\vimrc" "%HOMEDRIVE%%HOMEPATH%\vimfiles\vimrc"
 
-del "%USERPROFILE%\vimfiles\gvimrc"
-mklink "%USERPROFILE%\vimfiles\gvimrc" "%~dp0dotfiles\gvimrc"
-if %ERRORLEVEL% NEQ 0 copy "%~dp0dotfiles\gvimrc" "%USERPROFILE%\vimfiles\gvimrc"
+del "%HOMEDRIVE%%HOMEPATH%\vimfiles\gvimrc"
+mklink "%HOMEDRIVE%%HOMEPATH%\vimfiles\gvimrc" "%~dp0dotfiles\gvimrc"
+if %ERRORLEVEL% NEQ 0 copy "%~dp0dotfiles\gvimrc" "%HOMEDRIVE%%HOMEPATH%\vimfiles\gvimrc"

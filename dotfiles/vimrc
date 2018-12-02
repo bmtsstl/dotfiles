@@ -116,6 +116,10 @@ set wildchar=<Tab>
 set background=dark
 set lazyredraw
 
+if has('termguicolors')
+	set termguicolors
+endif
+
 " IM
 inoremap <silent><ESC> <ESC>:set iminsert=0 imsearch=0<CR>
 

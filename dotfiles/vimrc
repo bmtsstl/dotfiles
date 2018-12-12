@@ -143,21 +143,22 @@ endif
 
 " ----- plugins ---------------------------------
 if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git')
-	let s:tmp = tempname()
-	let s:out = ''
-	try
-		let s:out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.s:tmp.'"')
-		if v:shell_error
-			echohl ErrorMsg
-			echomsg s:out
-			echohl None
-		endif
-		call rename(s:tmp.'/plug.vim', s:file_plug)
-	finally
-		call delete(s:tmp, 'rf')
-		unlet s:tmp
-		unlet s:out
-	endtry
+	function! s:install_plug()
+		let tmp = tempname()
+		let out = ''
+		try
+			let out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.tmp.'"')
+			if v:shell_error
+				echohl ErrorMsg
+				echomsg out
+				echohl None
+			endif
+			call rename(tmp.'/plug.vim', s:file_plug)
+		finally
+			call delete(tmp, 'rf')
+		endtry
+	endfunction
+	call s:install_plug()
 endif
 
 if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')

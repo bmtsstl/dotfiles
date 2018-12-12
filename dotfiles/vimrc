@@ -189,9 +189,10 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 			let g:pymode_python = 'python'
 		endif
 
-		autocmd vimrc bufwritepost *.py PymodeLintAuto
-		let g:pymode_lint_on_write = 0
 		let g:pymode_lint_ignore = ['E501']
+		let g:pymode_lint_on_write = 0
+		autocmd vimrc bufwritepost *.py PymodeLintAuto
+		autocmd vimrc bufwritepost *.py syntax on	" workaround
 
 		let g:pymode_rope = 1
 		let g:pymode_rope_complete_on_dot = 0

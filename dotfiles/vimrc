@@ -173,7 +173,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
 		let g:go_fmt_autosave = 0
 		let g:go_metalinter_autosave = 0
-		autocmd vimrc bufwritepost *.go GoImports
+		autocmd vimrc BufWritePost *.go GoImports
 	endif
 
 	" rust.vim
@@ -192,18 +192,18 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 		let g:pymode_lint_ignore = ['E501']
 		let g:pymode_lint_on_write = 0
-		autocmd vimrc bufwritepost *.py PymodeLintAuto
-		autocmd vimrc bufwritepost *.py syntax on	" workaround
+		autocmd vimrc BufWritePost *.py PymodeLintAuto
+		autocmd vimrc BufWritePost *.py syntax on	" workaround
 
 		let g:pymode_rope = 1
 		let g:pymode_rope_complete_on_dot = 0
-		autocmd vimrc bufread *.py nnoremap <silent> <buffer> <C-]> :call pymode#rope#goto_definition()<CR>
+		autocmd vimrc BufRead *.py nnoremap <silent> <buffer> <C-]> :call pymode#rope#goto_definition()<CR>
 	endif
 
 	" vim-hybrid
 	if !has('win32') || has('gui_running')
 		Plug 'w0ng/vim-hybrid', {'do': ':colorscheme hybrid'}
-		autocmd vimrc vimenter * try | colorscheme hybrid | catch /^Vim\%((\a\+)\)\=:E185/ | endtry
+		autocmd vimrc VimEnter * try | colorscheme hybrid | catch /^Vim\%((\a\+)\)\=:E185/ | endtry
 	endif
 
 	call plug#end()

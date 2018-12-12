@@ -143,20 +143,20 @@ endif
 
 " ----- plugins ---------------------------------
 if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git')
-	let tmp = tempname()
-	let out = ''
+	let s:tmp = tempname()
+	let s:out = ''
 	try
-		let out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.tmp.'"')
+		let s:out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.s:tmp.'"')
 		if v:shell_error
 			echohl ErrorMsg
-			echomsg out
+			echomsg s:out
 			echohl None
 		endif
-		call rename(tmp.'/plug.vim', s:file_plug)
+		call rename(s:tmp.'/plug.vim', s:file_plug)
 	finally
-		call delete(tmp, 'rf')
-		unlet tmp
-		unlet out
+		call delete(s:tmp, 'rf')
+		unlet s:tmp
+		unlet s:out
 	endtry
 endif
 

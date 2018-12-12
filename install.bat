@@ -1,6 +1,6 @@
 @echo off
 cd "%~dp0"
-git config user.name "ryouser"
-git config user.email "35141868+ryouser@users.noreply.github.com"
+git config user.name "bmtsstl"
+git config user.email "35141868+bmtsstl@users.noreply.github.com"
 
 call "%~dp0deploy.bat"

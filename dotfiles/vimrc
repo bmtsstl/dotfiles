@@ -80,7 +80,10 @@ set guioptions-=b
 set guioptions-=F
 
 if has('gui_win32')
-   	set guifont=MS_Gothic:h10
+	set guifont-=MS_Gothic:h10 guifont^=MS_Gothic:h10
+	set guifont-=Consolas:h10 guifont^=Consolas:h10
+	set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
+	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
 
 if has('directx')

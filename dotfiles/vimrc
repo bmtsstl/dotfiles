@@ -87,7 +87,7 @@ if has('gui_win32')
 endif
 
 if has('directx')
-   	set renderoptions=type:directx
+   	set renderoptions=type:directx,renmode:5
 endif
 
 " file handling

@@ -153,8 +153,9 @@ if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git'
 			let out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.tmp.'"')
 			if v:shell_error
 				echohl ErrorMsg
-				echomsg out
+				echomsg "Error installing vim-plug".out
 				echohl None
+				return 1
 			endif
 			call rename(tmp.'/plug.vim', s:file_plug)
 		finally

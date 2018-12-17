@@ -224,6 +224,9 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		autocmd vimrc VimEnter * try | colorscheme hybrid | catch /^Vim\%((\a\+)\)\=:E185/ | endtry
 	endif
 
+	" vimdoc-ja
+	Plug 'vim-jp/vimdoc-ja'
+
 	call plug#end()
 endif
 

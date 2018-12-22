@@ -188,7 +188,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" vim-lsp
 	Plug 'prabirshrestha/vim-lsp'
-	Plug 'prabirshrestha/async.vim', {'branch': 'no-block'}	" https://github.com/prabirshrestha/async.vim/pull/18
+	Plug 'prabirshrestha/async.vim'
 	if executable('pyls')
 		autocmd vimrc User lsp_setup call lsp#register_server({
 			\ 'name': 'pyls',

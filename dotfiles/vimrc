@@ -187,16 +187,18 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	endif
 
 	" vim-lsp
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'prabirshrestha/async.vim'
-	if executable('pyls')
-		autocmd vimrc User lsp_setup call lsp#register_server({
-			\ 'name': 'pyls',
-			\ 'cmd': {server_info->['pyls']},
-			\ 'whitelist': ['python'],
-			\ })
-		autocmd vimrc FileType python setlocal omnifunc=lsp#complete
-		autocmd vimrc FileType python nmap <buffer> <C-]> <Plug>(lsp-definition)
+	if has('job') && has('timers')
+		Plug 'prabirshrestha/vim-lsp'
+		Plug 'prabirshrestha/async.vim'
+		if executable('pyls')
+			autocmd vimrc User lsp_setup call lsp#register_server({
+				\ 'name': 'pyls',
+				\ 'cmd': {server_info->['pyls']},
+				\ 'whitelist': ['python'],
+				\ })
+			autocmd vimrc FileType python setlocal omnifunc=lsp#complete
+			autocmd vimrc FileType python nmap <buffer> <C-]> <Plug>(lsp-definition)
+		endif
 	endif
 
 	" vim-hybrid

@@ -186,6 +186,18 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'vim-scripts/sudo.vim'
 	endif
 
+	" vim-lsp
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'prabirshrestha/async.vim', {'branch': 'no-block'}	" https://github.com/prabirshrestha/async.vim/pull/18
+	if executable('pyls')
+		autocmd vimrc User lsp_setup call lsp#register_server({
+			\ 'name': 'pyls',
+			\ 'cmd': {server_info->[&shell, &shellcmdflag, 'tee stdin | pyls | tee stdout']},
+			\ 'whitelist': ['python'],
+			\ })
+		autocmd vimrc FileType python setlocal omnifunc=lsp#complete
+		autocmd vimrc FileType python nmap <buffer> <C-]> <Plug>(lsp-definition)
+	endif
 
 	" vim-hybrid
 	if !has('win32') || has('gui_running')

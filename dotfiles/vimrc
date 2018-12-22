@@ -192,7 +192,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	if executable('pyls')
 		autocmd vimrc User lsp_setup call lsp#register_server({
 			\ 'name': 'pyls',
-			\ 'cmd': {server_info->[&shell, &shellcmdflag, 'tee stdin | pyls | tee stdout']},
+			\ 'cmd': {server_info->['pyls']},
 			\ 'whitelist': ['python'],
 			\ })
 		autocmd vimrc FileType python setlocal omnifunc=lsp#complete

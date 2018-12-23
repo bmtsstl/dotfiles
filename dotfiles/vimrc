@@ -188,7 +188,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	endif
 
 	" vim-lsp
-	if has('job') && has('timers')
+	if has('job') && has('timers') && has('lambda')
 		Plug 'prabirshrestha/vim-lsp'
 		Plug 'prabirshrestha/async.vim'
 

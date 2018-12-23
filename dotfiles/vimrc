@@ -195,6 +195,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		function! s:lsp_setup() abort
 			setlocal omnifunc=lsp#complete
 			nmap <buffer> <C-]> <Plug>(lsp-definition)
+			autocmd vimrc BufWrite <buffer> LspDocumentFormatSync
 		endfunction
 
 		if executable('pyls')

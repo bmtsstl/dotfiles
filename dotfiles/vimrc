@@ -141,7 +141,7 @@ nnoremap <C-z> <C-w>z
 " ----- interfaces ------------------------------
 
 " python
-if exists('+pythonthreedll')
+if exists('+pythonthreedll') && executable('python37.dll')
 	set pythonthreedll=python37.dll
 endif
 

@@ -221,7 +221,13 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" vim-hybrid
 	if !has('win32') || has('gui_running')
 		Plug 'w0ng/vim-hybrid', {'do': ':colorscheme hybrid'}
-		autocmd vimrc User plug_end try | colorscheme hybrid | catch /^Vim\%((\a\+)\)\=:E185/ | endtry
+		function s:load_colorscheme_if_possible(name) abort
+			try
+				execute 'colorscheme '.a:name
+			catch /^Vim\%((\a\+)\)\=:E185/
+			endtry
+		endfunction
+		autocmd vimrc User plug_end call s:load_colorscheme_if_possible('hybrid')
 	endif
 
 	" vimdoc-ja

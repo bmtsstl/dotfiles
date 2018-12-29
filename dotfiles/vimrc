@@ -138,6 +138,16 @@ nnoremap <C-l> <C-w>l
 nnoremap <BS> <C-w>h
 nnoremap <C-z> <C-w>z
 
+" [python] warn when venv is not activated
+function! s:python_check_venv() abort
+	if !exists('$VIRTUAL_ENV')
+		echohl WarningMsg
+		echo 'warning: venv is not activated'
+		echohl None
+	endif
+endfunction
+autocmd vimrc FileType python call s:python_check_venv()
+
 " ----- interfaces ------------------------------
 
 " python

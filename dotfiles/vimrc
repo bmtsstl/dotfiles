@@ -200,7 +200,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" vim-lsp
 	if has('job') && has('timers') && has('lambda')
-		Plug 'prabirshrestha/vim-lsp'
+		Plug 'prabirshrestha/vim-lsp', {'commit': '1015ef2013d58d0ac12ef3fcc44059377a4835a7'}
 		Plug 'prabirshrestha/async.vim'
 
 		function! s:lsp_setup() abort

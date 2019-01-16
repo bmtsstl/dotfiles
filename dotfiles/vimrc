@@ -222,7 +222,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" vim-hybrid
 	if !has('win32') || has('gui_running')
 		Plug 'w0ng/vim-hybrid', {'do': ':colorscheme hybrid'}
-		function s:load_colorscheme_if_possible(name) abort
+		function! s:load_colorscheme_if_possible(name) abort
 			try
 				execute 'colorscheme '.a:name
 			catch /^Vim\%((\a\+)\)\=:E185/

@@ -240,6 +240,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" vimdoc-ja
 	Plug 'vim-jp/vimdoc-ja'
+	set helplang=ja
 
 	call plug#end()
 	doautocmd vimrc User plug_end

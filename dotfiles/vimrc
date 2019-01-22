@@ -139,6 +139,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <BS> <C-w>h
 nnoremap <C-z> <C-w>z
+nnoremap <C-t> <C-w>T
 
 " [python] warn when venv is not activated
 function! s:python_check_venv() abort

@@ -203,6 +203,14 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'vim-scripts/sudo.vim'
 	endif
 
+	" vim-go
+	if executable('go')
+		Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
+		let g:go_fmt_autosave = 0
+		let g:go_metalinter_autosave = 0
+		autocmd vimrc BufWritePost *.go GoImports
+	endif
+
 	" vim-lsp
 	if has('job') && has('timers') && has('lambda')
 		Plug 'prabirshrestha/vim-lsp'

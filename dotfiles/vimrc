@@ -211,6 +211,8 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		function! s:lsp_setup() abort
 			setlocal omnifunc=lsp#complete
 			nmap <buffer> gd <Plug>(lsp-definition)
+
+			" FIXME: reloading vimrc will remove this autocmd
 			autocmd vimrc BufWrite <buffer> silent LspDocumentFormatSync
 		endfunction
 

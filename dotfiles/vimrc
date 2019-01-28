@@ -145,7 +145,7 @@ nnoremap <C-t> <C-w>T
 function! s:python_check_venv() abort
 	if !exists('$VIRTUAL_ENV')
 		echohl WarningMsg
-		echo 'warning: venv is not activated'
+		echon ' [novenv]'
 		echohl None
 	endif
 endfunction

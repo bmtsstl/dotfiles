@@ -87,8 +87,9 @@ endif
 
 " file handling
 filetype plugin indent on
-set fencs-=ucs-bom fencs-=utf-8 fencs-=cp932 fencs^=cp932 fencs^=utf-8 fencs^=ucs-bom
-set ffs-=unix ffs^=unix
+set fileencodings-=ucs-bom fileencodings-=utf-8 fileencodings-=cp932
+set fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
+set fileformats-=unix fileformats^=unix
 set autoread
 set hidden
 
@@ -208,13 +209,13 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		let l:sts = &softtabstop
 
 		DetectIndent
-		if l:et == &et && l:sw == &sw && l:ts == &ts && l:sts == &sts
+		if l:et == &expandtab && l:sw == &shiftwidth && l:ts == &tabstop && l:sts == &softtabstop
 			return
 		endif
 		
 		echohl WarningMsg
-		if &et
-			echon ' [space=' . &sw . ']'
+		if &expandtab
+			echon ' [space=' . &shiftwidth . ']'
 		else
 			echon ' [tab]'
 		endif

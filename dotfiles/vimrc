@@ -215,7 +215,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		
 		echohl WarningMsg
 		if &expandtab
-			echon ' [space=' . &shiftwidth . ']'
+			echon ' [' . &shiftwidth . ' space]'
 		else
 			echon ' [tab]'
 		endif

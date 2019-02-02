@@ -108,6 +108,7 @@ set nowrap
 set ruler
 set cursorline
 set hlsearch
+set incsearch
 set wildmenu
 set wildchar=<Tab>
 set background=dark

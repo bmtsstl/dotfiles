@@ -1,10 +1,5 @@
 " ----- initialize ------------------------------
 
-" nocompatible
-if &compatible
-	set nocompatible
-endif
-
 " encoding
 set termencoding=default
 set encoding=utf-8

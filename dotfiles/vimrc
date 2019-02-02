@@ -87,7 +87,7 @@ endif
 
 " file handling
 filetype plugin indent on
-set fileencodings-=ucs-bom fileencodings-=utf-8 fileencodings-=cp932
+set fileencodings-=cp932 fileencodings-=utf-8 fileencodings-=ucs-bom
 set fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
 set fileformats-=unix fileformats^=unix
 set autoread

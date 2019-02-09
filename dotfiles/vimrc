@@ -105,6 +105,7 @@ set pumheight=10
 set display+=lastline
 set laststatus=1
 set nowrap
+set showcmd
 set ruler
 set cursorline
 set hlsearch

@@ -43,7 +43,7 @@ alias egrep='egrep --color=auto'
 # ----- functions -------------------------------
 
 # venv
-if type python3 >/dev/null; then
+if type python3 >/dev/null 2>&1; then
 	venv () {
 		if [ -n "${VIRTUAL_ENV}" ]; then
 			deactivate

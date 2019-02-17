@@ -278,7 +278,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	doautocmd vimrc User plug_end
 endif
 
-" --- local -------------------------------------
+" ----- local -----------------------------------
 if filereadable(s:file_local)
 	execute 'source '.s:file_local
 endif

@@ -208,24 +208,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		if exists('*DetectIndent')
 			return
 		endif
-
-		let l:et = &expandtab
-		let l:sw = &shiftwidth
-		let l:ts = &tabstop
-		let l:sts = &softtabstop
-
 		DetectIndent
-		if l:et == &expandtab && l:sw == &shiftwidth && l:ts == &tabstop && l:sts == &softtabstop
-			return
-		endif
-
-		echohl WarningMsg
-		if &expandtab
-			echon ' [' . &shiftwidth . ' space]'
-		else
-			echon ' [tab]'
-		endif
-		echohl None
 	endfunction
 	autocmd vimrc BufRead * call s:detectindent_bufread()
 

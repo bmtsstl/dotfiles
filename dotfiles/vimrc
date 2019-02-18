@@ -214,7 +214,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		if l:et == &expandtab && l:sw == &shiftwidth && l:ts == &tabstop && l:sts == &softtabstop
 			return
 		endif
-		
+
 		echohl WarningMsg
 		if &expandtab
 			echon ' [' . &shiftwidth . ' space]'

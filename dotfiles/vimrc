@@ -198,7 +198,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" DetectIndent
 	Plug 'ciaranm/detectindent'
 	function! s:detectindent_bufread() abort
-		if exists('*DetectIndent')
+		if exists(':DetectIndent') != 2
 			return
 		endif
 		DetectIndent

@@ -192,6 +192,9 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'vim-scripts/sudo.vim'
 	endif
 
+	" vim-trailing-whitespace
+	Plug 'bronson/vim-trailing-whitespace'
+
 	" DetectIndent
 	Plug 'ciaranm/detectindent'
 	function! s:detectindent_bufread() abort

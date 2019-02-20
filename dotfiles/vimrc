@@ -129,7 +129,7 @@ let &t_SR .= "\e[4 q"
 let &t_EI .= "\e[2 q"
 
 " IM
-inoremap <silent><ESC> <ESC>:<C-u>set iminsert=0 imsearch=0<CR>
+inoremap <silent><ESC> <C-\><C-N>:<C-u>set iminsert=0 imsearch=0<CR>
 
 " mapping
 nnoremap <C-h> <C-w>h

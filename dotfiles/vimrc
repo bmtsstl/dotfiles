@@ -140,13 +140,6 @@ nnoremap <BS> <C-w>h
 nnoremap <C-z> <C-w>z
 nnoremap <C-t> <C-w>T
 
-" ----- interfaces ------------------------------
-
-" python
-if exists('+pythonthreedll') && executable('python37.dll')
-	set pythonthreedll=python37.dll
-endif
-
 " ----- plugins ---------------------------------
 if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git')
 	function! s:install_plug()

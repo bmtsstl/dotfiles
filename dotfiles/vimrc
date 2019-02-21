@@ -12,17 +12,17 @@ augroup END
 
 " files & directories
 let s:dir_vim      = expand('<sfile>:p:h')
-let s:dir_autoload = s:dir_vim.'/autoload'
-let s:dir_cache    = s:dir_vim.'/cache'
+let s:dir_autoload = s:dir_vim . '/autoload'
+let s:dir_cache    = s:dir_vim . '/cache'
 
-let s:dir_plug   = s:dir_cache.'/plug'
-let s:dir_backup = s:dir_cache.'/backup'
-let s:dir_swap   = s:dir_cache.'/swap'
-let s:dir_undo   = s:dir_cache.'/undo'
+let s:dir_plug   = s:dir_cache . '/plug'
+let s:dir_backup = s:dir_cache . '/backup'
+let s:dir_swap   = s:dir_cache . '/swap'
+let s:dir_undo   = s:dir_cache . '/undo'
 
-let s:file_local = s:dir_vim.'/vimrc.local'
-let s:file_plug  = s:dir_autoload.'/plug.vim'
-let s:file_info  = s:dir_cache.'/info'
+let s:file_local = s:dir_vim . '/vimrc.local'
+let s:file_plug  = s:dir_autoload . '/plug.vim'
+let s:file_info  = s:dir_cache . '/info'
 
 " mkdir
 function! s:mkdir(dir) abort
@@ -39,26 +39,26 @@ call s:mkdir(s:dir_swap)
 call s:mkdir(s:dir_undo)
 
 " runtimepath
-execute 'set runtimepath-='.s:dir_vim.' runtimepath^='.s:dir_vim
+execute 'set runtimepath-=' . s:dir_vim . ' runtimepath^=' . s:dir_vim
 
 " ----- preferences -----------------------------
 
 " viminfo
 if has('viminfo')
-	execute 'set viminfo+=n'.escape(s:file_info, '\')
+	execute 'set viminfo+=n' . escape(s:file_info, '\')
 endif
 
 " backup
-execute 'set backupdir^='.s:dir_backup
+execute 'set backupdir^=' . s:dir_backup
 set backup writebackup
 
 " swap
-execute 'set directory^='.s:dir_swap
+execute 'set directory^=' . s:dir_swap
 set swapfile
 
 " undo
 if has('persistent_undo')
-	execute 'set undodir^='.s:dir_undo
+	execute 'set undodir^=' . s:dir_undo
 	set undofile
 endif
 
@@ -146,14 +146,14 @@ if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git'
 		let l:tmp = tempname()
 		let l:out = ''
 		try
-			let l:out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "'.l:tmp.'"')
+			let l:out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:tmp . '"')
 			if v:shell_error
 				echohl ErrorMsg
-				echomsg 'Error installing vim-plug'.l:out
+				echomsg 'Error installing vim-plug' . l:out
 				echohl None
 				return 1
 			endif
-			call rename(l:tmp.'/plug.vim', s:file_plug)
+			call rename(l:tmp . '/plug.vim', s:file_plug)
 		finally
 			call delete(l:tmp, 'rf')
 		endtry
@@ -243,7 +243,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 		function! s:load_colorscheme_if_possible(name) abort
 			try
-				execute 'colorscheme '.a:name
+				execute 'colorscheme ' . a:name
 			catch /^Vim\%((\a\+)\)\=:E185/
 			endtry
 		endfunction
@@ -260,5 +260,5 @@ endif
 
 " ----- local -----------------------------------
 if filereadable(s:file_local)
-	execute 'source '.s:file_local
+	execute 'source ' . s:file_local
 endif

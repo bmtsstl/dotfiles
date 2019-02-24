@@ -74,6 +74,12 @@ set guioptions-=l guioptions-=L
 set guioptions-=b
 set guioptions-=F
 
+" directx
+if has('directx')
+	set renderoptions=type:directx,renmode:5
+endif
+
+" font
 if has('gui_win32')
 	set guifont-=MS_Gothic:h10 guifont^=MS_Gothic:h10
 	set guifont-=Consolas:h10 guifont^=Consolas:h10
@@ -81,40 +87,25 @@ if has('gui_win32')
 	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
 
-if has('directx')
-   	set renderoptions=type:directx,renmode:5
-endif
-
-" file handling
-filetype plugin indent on
+" encoding & newline
 set fileencodings-=cp932 fileencodings-=utf-8 fileencodings-=ucs-bom
 set fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
 set fileformats-=unix fileformats^=unix
-set autoread
-set hidden
 
-" view
-syntax enable
-set number
+" indent
 set tabstop=4
 set shiftwidth=4
 let g:vim_indent_cont = 4
-set backspace=indent,eol,start
-set scrolloff=5
-set pumheight=10
-set display+=lastline
-set laststatus=1
-set nowrap
-set showcmd
-set ruler
-set cursorline
+
+" search highlight
 set hlsearch
 set incsearch
+
+" wildmenu
 set wildmenu
 set wildchar=<Tab>
-set background=dark
-set lazyredraw
 
+" termguicolors
 if has('termguicolors')
 	set termguicolors
 	if $TERM ==# 'tmux-256color' || $TERM ==# 'screen-256color'
@@ -139,6 +130,24 @@ nnoremap <C-l> <C-w>l
 nnoremap <BS> <C-w>h
 nnoremap <C-z> <C-w>z
 nnoremap <C-t> <C-w>T
+
+" misc
+filetype plugin indent on
+syntax enable
+set autoread
+set background=dark
+set backspace=indent,eol,start
+set cursorline
+set display+=lastline
+set hidden
+set laststatus=1
+set lazyredraw
+set nowrap
+set number
+set pumheight=10
+set ruler
+set scrolloff=5
+set showcmd
 
 " ----- plugins ---------------------------------
 if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git')

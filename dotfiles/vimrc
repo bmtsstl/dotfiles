@@ -123,6 +123,26 @@ let &t_EI .= "\e[2 q"
 " IM
 autocmd vimrc InsertLeave * set iminsert=0 imsearch=0
 
+" fullscreen
+function! s:cmd_fullscreen() abort
+	let l:current_winnr = winnr()
+	let l:use_only = v:true
+	for l:winnr in range(1, winnr('$'))
+		let l:bufinfo = getbufinfo(winbufnr(l:winnr))
+		if l:winnr != l:current_winnr && (l:bufinfo.name !=# '' || l:bufinfo.changed)
+			let l:use_only = v:false
+			break
+		endif
+	endfor
+
+	if l:use_only
+		only
+		return
+	endif
+	execute "normal! \<C-w>T"
+endfunction
+command! Fullscreen call s:cmd_fullscreen()
+
 " mapping
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

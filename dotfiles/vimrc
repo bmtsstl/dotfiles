@@ -151,6 +151,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <BS> <C-w>h
 nnoremap <C-z> <C-w>z
 nnoremap <C-t> <C-w>T
+nnoremap <silent> <C-f> :<C-u>Fullscreen<CR>
 
 " misc
 filetype plugin indent on

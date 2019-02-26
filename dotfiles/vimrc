@@ -18,7 +18,7 @@ let s:dir_plug     = s:dir_vim . '/plug'
 let s:dir_swap     = s:dir_vim . '/swap'
 let s:dir_undo     = s:dir_vim . '/undo'
 
-let s:file_info  = s:dir_vim . '/info'
+let s:file_info  = s:dir_vim . '/viminfo'
 let s:file_local = s:dir_vim . '/vimrc.local'
 let s:file_plug  = s:dir_autoload . '/plug.vim'
 

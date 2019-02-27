@@ -42,7 +42,7 @@ execute 'set runtimepath-=' . s:dir_vim . ' runtimepath^=' . s:dir_vim
 
 " viminfo
 if has('viminfo')
-	let &viminfofile = s:file_info
+	execute 'set viminfo+=n' . escape(s:file_info, '\')
 endif
 
 " backup

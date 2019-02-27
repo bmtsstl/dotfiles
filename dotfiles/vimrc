@@ -140,6 +140,10 @@ function! s:cmd_fullscreen() abort
 endfunction
 command! Fullscreen call s:cmd_fullscreen()
 
+" timeout
+set notimeout
+set ttimeout
+
 " mapping
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

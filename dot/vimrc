@@ -34,7 +34,7 @@ function! s:set_list_prepend(name, ...) abort
 		throw 'unknown option: ' . a:name
 	endif
 	let l:list = eval('&' . a:name)
-	let l:list = split(l:list, '\\\@<!,')	" un-escaped comma
+	let l:list = split(l:list, '\\\@<!,')	" split with unescaped comma
 
 	for l:i in range(a:0)
 		let l:value = a:000[l:i]

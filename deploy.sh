@@ -1,5 +1,5 @@
 #/bin/bash
-DOTFILES="$(cd $(dirname $0); pwd)/dotfiles"
+DOTFILES="$(cd $(dirname $0); pwd)/dot"
 
 ln --backup --symbolic "${DOTFILES}/bash_profile" ~/.bash_profile
 ln --backup --symbolic "${DOTFILES}/bashrc" ~/.bashrc

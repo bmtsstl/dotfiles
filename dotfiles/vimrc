@@ -145,14 +145,15 @@ set notimeout
 set ttimeout
 
 " mapping
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <BS> <C-w>h
-nnoremap <C-z> <C-w>z
-nnoremap <C-t> <C-w>T
-nnoremap <silent> <C-f> :<C-u>Fullscreen<CR>
+let g:mapleader = "\<Space>"
+nnoremap <Leader> <Nop>
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+nnoremap <Leader>z <C-w>z
+nnoremap <Leader>t <C-w>T
+nnoremap <silent> <Leader>f :<C-u>Fullscreen<CR>
 
 " misc
 filetype plugin indent on

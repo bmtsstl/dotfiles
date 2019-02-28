@@ -22,13 +22,32 @@ let s:file_info  = s:dir_vim . '/viminfo'
 let s:file_local = s:dir_vim . '/vimrc.local'
 let s:file_plug  = s:dir_autoload . '/plug.vim'
 
-" mkdir
+" functions
 function! s:mkdir(dir) abort
 	if !isdirectory(a:dir)
 		call mkdir(a:dir, 'p', 0700)
 	endif
 endfunction
 
+function! s:set_list_prepend(name, ...) abort
+	if !exists('&' . a:name)
+		throw 'unknown option: ' . a:name
+	endif
+	let l:list = eval('&' . a:name)
+	let l:list = split(l:list, '\\\@<!,')	" un-escaped comma
+
+	for l:i in range(a:0)
+		let l:value = a:000[l:i]
+		let l:value = escape(l:value, ',')
+		call filter(l:list, 'v:val !=# l:value')
+		call insert(l:list, l:value, l:i)
+	endfor
+
+	let l:list = join(l:list, ',')
+	execute 'let &' . a:name . ' = l:list'
+endfunction
+
+" mkdir
 call s:mkdir(s:dir_autoload)
 call s:mkdir(s:dir_plug)
 call s:mkdir(s:dir_backup)
@@ -36,26 +55,37 @@ call s:mkdir(s:dir_swap)
 call s:mkdir(s:dir_undo)
 
 " runtimepath
-execute 'set runtimepath-=' . s:dir_vim . ' runtimepath^=' . s:dir_vim
+call s:set_list_prepend('runtimepath', s:dir_vim)
 
 " ----- preferences -----------------------------
 
 " viminfo
 if has('viminfo')
-	execute 'set viminfo+=n' . escape(s:file_info, '\')
+	function! s:set_viminfo_file(filename) abort
+		let l:viminfo = &viminfo
+		for l:i in range(len(l:viminfo) - 1)
+			if l:viminfo[l:i : l:i + 1] == ',n'
+				let l:viminfo = l:viminfo[: l:i - 1]
+				break
+			endif
+		endfor
+		let l:viminfo .= ',n' . a:filename
+		let &viminfo = l:viminfo
+	endfunction
+	call s:set_viminfo_file(s:file_info)
 endif
 
 " backup
-execute 'set backupdir^=' . s:dir_backup
+call s:set_list_prepend('backupdir', s:dir_backup)
 set backup writebackup
 
 " swap
-execute 'set directory^=' . s:dir_swap
+call s:set_list_prepend('directory', s:dir_swap)
 set swapfile
 
 " undo
 if has('persistent_undo')
-	execute 'set undodir^=' . s:dir_undo
+	call s:set_list_prepend('undodir', s:dir_undo)
 	set undofile
 endif
 

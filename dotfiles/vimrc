@@ -61,18 +61,7 @@ call s:set_list_prepend('runtimepath', s:dir_vim)
 
 " viminfo
 if has('viminfo')
-	function! s:set_viminfo_file(filename) abort
-		let l:viminfo = &viminfo
-		for l:i in range(len(l:viminfo) - 1)
-			if l:viminfo[l:i : l:i + 1] == ',n'
-				let l:viminfo = l:viminfo[: l:i - 1]
-				break
-			endif
-		endfor
-		let l:viminfo .= ',n' . a:filename
-		let &viminfo = l:viminfo
-	endfunction
-	call s:set_viminfo_file(s:file_info)
+	let &viminfo = substitute(&viminfo, '\C,n.\+', '', '') . ',n' . s:file_info
 endif
 
 " backup

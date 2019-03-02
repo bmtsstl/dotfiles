@@ -17,7 +17,7 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # prompt
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+if [ -x /usr/bin/tput ] && tput setaf 1 &>/dev/null; then
 	PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
 else
 	PS1='\u@\h:\w\$ '
@@ -43,7 +43,7 @@ alias egrep='egrep --color=auto'
 # ----- aliases ---------------------------------
 
 # peco
-if type peco >/dev/null 2>&1; then
+if type peco &>/dev/null; then
 	alias pecof='find -type f 2>/dev/null | peco --prompt "FILE>"'
 	alias pecod='find -type d 2>/dev/null | peco --prompt "DIR>"'
 	alias pecoc='find -maxdepth 1 2>/dev/null | peco --prompt "CURRENT>"'
@@ -52,7 +52,7 @@ fi
 # ----- functions -------------------------------
 
 # venv
-if type python3 >/dev/null 2>&1; then
+if type python3 &>/dev/null; then
 	venv () {
 		if [ -n "${VIRTUAL_ENV}" ]; then
 			deactivate

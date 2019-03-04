@@ -289,9 +289,6 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	if !has('win32') || has('gui_running')
 		Plug 'cocopon/iceberg.vim', {'do': ':colorscheme iceberg'}
 
-		" iceberg.vim will check &t_Co, but &t_Co has not been initialized yet.
-		set t_Co=256	" workaround
-
 		function! s:load_colorscheme_if_possible(name) abort
 			try
 				execute 'colorscheme ' . a:name

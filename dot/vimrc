@@ -311,5 +311,5 @@ endif
 
 " ----- local -----------------------------------
 if filereadable(s:file_local)
-	execute 'source ' . fnameescape(s:file_local)
+	source `=s:file_local`
 endif

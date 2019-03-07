@@ -236,8 +236,11 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'vim-scripts/sudo.vim'
 	endif
 
-	" vim-trailing-whitespace
-	Plug 'bronson/vim-trailing-whitespace'
+	" vim-better-whitespace
+	Plug 'ntpeters/vim-better-whitespace'
+	let g:better_whitespace_operator = ''
+	let g:better_whitespace_ctermcolor = 'darkred'
+	let g:better_whitespace_guicolor = 'darkred'
 
 	" DetectIndent
 	Plug 'ciaranm/detectindent'

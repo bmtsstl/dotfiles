@@ -36,11 +36,11 @@ function! s:set_list_prepend(name, ...) abort
 	let l:list = eval('&' . a:name)
 	let l:list = split(l:list, '\\\@<!,')	" split with unescaped comma
 
-	for l:i in range(a:0)
+	for l:i in range(a:0 - 1, 0, -1)
 		let l:value = a:000[l:i]
 		let l:value = escape(l:value, ',')
 		call filter(l:list, 'v:val !=# l:value')
-		call insert(l:list, l:value, l:i)
+		call insert(l:list, l:value)
 	endfor
 
 	let l:list = join(l:list, ',')

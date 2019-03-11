@@ -79,6 +79,7 @@ if has('persistent_undo')
 endif
 
 " gui
+set guioptions+=!
 set guioptions-=a guioptions-=P guioptions-=A
 set guioptions+=c
 set guioptions-=e

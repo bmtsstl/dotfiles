@@ -22,13 +22,20 @@ let s:file_info  = s:dir_vim . '/viminfo'
 let s:file_local = s:dir_vim . '/vimrc.local'
 let s:file_plug  = s:dir_autoload . '/plug.vim'
 
-" functions
+" mkdir
 function! s:mkdir(dir) abort
 	if !isdirectory(a:dir)
 		call mkdir(a:dir, 'p', 0700)
 	endif
 endfunction
 
+call s:mkdir(s:dir_autoload)
+call s:mkdir(s:dir_plug)
+call s:mkdir(s:dir_backup)
+call s:mkdir(s:dir_swap)
+call s:mkdir(s:dir_undo)
+
+" functions
 function! s:set_list_prepend(name, ...) abort
 	if !exists('&' . a:name)
 		throw 'unknown option: ' . a:name
@@ -46,13 +53,6 @@ function! s:set_list_prepend(name, ...) abort
 	let l:list = join(l:list, ',')
 	execute 'let &' . a:name . ' = l:list'
 endfunction
-
-" mkdir
-call s:mkdir(s:dir_autoload)
-call s:mkdir(s:dir_plug)
-call s:mkdir(s:dir_backup)
-call s:mkdir(s:dir_swap)
-call s:mkdir(s:dir_undo)
 
 " runtimepath
 call s:set_list_prepend('runtimepath', s:dir_vim)

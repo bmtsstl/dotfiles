@@ -296,7 +296,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		function! s:load_colorscheme_if_possible(name) abort
 			try
 				execute 'colorscheme ' . a:name
-			catch /^Vim\%((\a\+)\)\=:E185/
+			catch /^Vim\%((\a\+)\)\=:E185:/
 			endtry
 		endfunction
 		autocmd vimrc User plug_end call s:load_colorscheme_if_possible('iceberg')

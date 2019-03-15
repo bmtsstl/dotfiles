@@ -145,8 +145,8 @@ function! s:cmd_maximize() abort
 	let l:current_winnr = winnr()
 	let l:use_only = v:true
 	for l:winnr in range(1, winnr('$'))
-		let l:bufinfo = getbufinfo(winbufnr(l:winnr))[0]
-		if l:winnr != l:current_winnr && (l:bufinfo.name !=# '' || l:bufinfo.changed)
+		let l:bufnr = winbufnr(l:winnr)
+		if l:winnr != l:current_winnr && (bufname(l:bufnr) !=# '' || getbufvar(l:bufnr, '&modified'))
 			let l:use_only = v:false
 			break
 		endif

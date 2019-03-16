@@ -133,9 +133,11 @@ if has('termguicolors')
 endif
 
 " cursor
-let &t_SI .= "\e[6 q"
-let &t_SR .= "\e[4 q"
-let &t_EI .= "\e[2 q"
+if &term != 'win32'
+	let &t_SI .= "\e[6 q"
+	let &t_SR .= "\e[4 q"
+	let &t_EI .= "\e[2 q"
+endif
 
 " IM
 autocmd vimrc InsertLeave * set iminsert=0 imsearch=0

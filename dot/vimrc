@@ -138,6 +138,9 @@ if &term != 'win32'
 	let &t_SR .= "\e[3 q"
 	let &t_EI .= "\e[1 q"
 endif
+set guicursor=a:block-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
+set guicursor+=i-ci:ver10-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
+set guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 
 " IM
 autocmd vimrc InsertLeave * set iminsert=0 imsearch=0

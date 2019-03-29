@@ -40,15 +40,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# ----- aliases ---------------------------------
-
-# peco
-if type peco &>/dev/null; then
-	alias pecof='find -type f 2>/dev/null | peco --prompt "FILE>"'
-	alias pecod='find -type d 2>/dev/null | peco --prompt "DIR>"'
-	alias pecoc='find -maxdepth 1 2>/dev/null | peco --prompt "CURRENT>"'
-fi
-
 # ----- functions -------------------------------
 
 # venv

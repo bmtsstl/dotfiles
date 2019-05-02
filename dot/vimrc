@@ -259,7 +259,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" vim-go
 	if executable('go')
-		Plug 'fatih/vim-go', {'tag': '*'}
+		Plug 'fatih/vim-go'
 		let g:go_fmt_autosave = 1
 		let g:go_fmt_command = 'goimports'
 	endif

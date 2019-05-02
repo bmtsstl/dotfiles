@@ -187,7 +187,7 @@ set backspace=indent,eol,start
 set cursorline
 set display+=lastline
 set hidden
-set laststatus=1
+set laststatus=2
 set lazyredraw
 set nowrap
 set number

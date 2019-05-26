@@ -55,6 +55,9 @@ if type python3 &>/dev/null; then
 		if [ ! -d "${VENV}" ]; then
 			read -p 'Hit enter to create venv, or CTRL-C to cancel ...'
 			python3 -m venv "${VENV}"
+			source ${VENV_ACTIVATE}
+			python -m pip install --upgrade pip
+			return 0
 		fi
 		if [ ! -e "${VENV_ACTIVATE}" ]; then
 			echo "${VENV_ACTIVATE} not found" >&2

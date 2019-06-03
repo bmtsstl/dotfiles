@@ -266,7 +266,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" vim-lsp
 	if has('job') && has('timers') && has('lambda')
-		Plug 'prabirshrestha/vim-lsp'
+		Plug 'prabirshrestha/vim-lsp', {'commit': 'c1be74277471f68f31d2995bb7054676e71aa65b'}
 		Plug 'prabirshrestha/async.vim'
 
 		let g:lsp_diagnostics_echo_cursor = 1

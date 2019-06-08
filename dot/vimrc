@@ -264,6 +264,9 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		let g:go_fmt_command = 'goimports'
 	endif
 
+	" vim-toml
+	Plug 'cespare/vim-toml'
+
 	" vim-lsp
 	if has('job') && has('timers') && has('lambda')
 		Plug 'prabirshrestha/vim-lsp', {'commit': 'c1be74277471f68f31d2995bb7054676e71aa65b'}

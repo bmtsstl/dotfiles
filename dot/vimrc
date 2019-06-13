@@ -196,6 +196,7 @@ set pumheight=10
 set ruler
 set scrolloff=5
 set showcmd
+set updatetime=300
 
 " ----- plugins ---------------------------------
 if isdirectory(s:dir_autoload) && !filereadable(s:file_plug) && executable('git')

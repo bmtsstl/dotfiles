@@ -269,39 +269,31 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	" vim-toml
 	Plug 'cespare/vim-toml'
 
-	" vim-lsp
-	if has('job') && has('timers') && has('lambda')
-		Plug 'prabirshrestha/vim-lsp', {'commit': 'c1be74277471f68f31d2995bb7054676e71aa65b'}
-		Plug 'prabirshrestha/async.vim'
+	" coc.nvim
+	if v:version >= 801 && executable('nodejs')
+		Plug 'neoclide/coc.nvim', {'do': ':call coc#util#install()'}
+		let g:coc_user_config = {
+			\ 'suggest.autoTrigger': 'trigger',
+			\ 'diagnostic.errorSign': 'E>',
+			\ 'diagnostic.warningSign': 'W>',
+			\ 'diagnostic.infoSign': 'I>',
+			\ 'diagnostic.hintSign': 'H>',
+			\ 'signature.enable': v:false,
+			\ 'languageserver': {},
+			\ }
 
-		let g:lsp_diagnostics_echo_cursor = 1
-		let g:lsp_signs_enabled = 1
-		let g:lsp_signs_error = {'text': 'X'}
-		let g:lsp_signs_warning = {'text': '!'}
-		let g:lsp_signs_hint = {'text': '?'}
-
-		function! s:lsp_format_sync_if_possible() abort
-			if exists(':LspDocumentFormatSync') != 2
-				return
-			endif
-			silent LspDocumentFormatSync
-		endfunction
-
-		function! s:lsp_setup() abort
-			setlocal omnifunc=lsp#complete
-			nmap <buffer> gd <Plug>(lsp-definition)
-
-			" FIXME: reloading vimrc will remove this autocmd
-			autocmd vimrc BufWrite <buffer> call s:lsp_format_sync_if_possible()
+		function! s:coc_setup_buffer()
+			inoremap <buffer><silent><expr> <C-x><C-o> coc#refresh()
+			map <buffer><silent> gd <Plug>(coc-definition)
+			autocmd vimrc BufWrite <buffer> call CocAction('format')
 		endfunction
 
 		if executable('pyls')
-			autocmd vimrc User lsp_setup call lsp#register_server({
-				\ 'name': 'pyls',
-				\ 'cmd': ['pyls'],
-				\ 'whitelist': ['python'],
-				\ })
-			autocmd vimrc FileType python call s:lsp_setup()
+			let g:coc_user_config['languageserver']['pyls'] = {
+				\ 'command': 'pyls',
+				\ 'filetypes': ['python'],
+				\ }
+			autocmd vimrc FileType python call s:coc_setup_buffer()
 		endif
 	endif
 

@@ -270,7 +270,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	Plug 'cespare/vim-toml'
 
 	" coc.nvim
-	if v:version >= 801 && executable('nodejs')
+	if v:version >= 801 && executable('node')
 		Plug 'neoclide/coc.nvim', {'do': ':call coc#util#install()'}
 		let g:coc_user_config = {
 			\ 'suggest.autoTrigger': 'trigger',

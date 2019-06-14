@@ -273,7 +273,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	if v:version >= 801 && executable('node')
 		Plug 'neoclide/coc.nvim', {'do': ':call coc#util#install()'}
 		let g:coc_user_config = {
-			\ 'suggest.autoTrigger': 'trigger',
+			\ 'suggest.autoTrigger': 'none',
 			\ 'diagnostic.errorSign': 'E>',
 			\ 'diagnostic.warningSign': 'W>',
 			\ 'diagnostic.infoSign': 'I>',

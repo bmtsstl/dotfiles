@@ -283,6 +283,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 		let g:coc_user_config = {
 			\ 'suggest.autoTrigger': 'none',
+			\ 'diagnostic.refreshOnInsertMode': v:true,
 			\ 'diagnostic.errorSign': 'E>',
 			\ 'diagnostic.warningSign': 'W>',
 			\ 'diagnostic.infoSign': 'I>',

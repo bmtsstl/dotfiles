@@ -58,6 +58,14 @@ function! s:set_list_prepend(name, ...) abort
 	execute 'let &' . a:name . ' = l:list'
 endfunction
 
+function! s:execute_if_available(command) abort
+	try
+		execute a:command
+	catch /^Vim\%((\a\+)\)\=:E464:/
+	catch /^Vim\%((\a\+)\)\=:E492:/
+	endtry
+endfunction
+
 " runtimepath
 call s:set_list_prepend('runtimepath', s:dir_vim)
 
@@ -268,16 +276,11 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	let g:better_whitespace_operator = ''
 	let g:better_whitespace_ctermcolor = 'darkred'
 	let g:better_whitespace_guicolor = 'darkred'
+	autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
 
 	" DetectIndent
 	Plug 'ciaranm/detectindent'
-	function! s:detectindent_if_possible() abort
-		if exists(':DetectIndent') != 2
-			return
-		endif
-		DetectIndent
-	endfunction
-	autocmd vimrc BufRead * call s:detectindent_if_possible()
+	autocmd vimrc BufRead * call s:execute_if_available('DetectIndent')
 
 	" vim-go
 	if executable('go')

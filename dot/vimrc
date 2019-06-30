@@ -185,6 +185,9 @@ nnoremap <Leader>l <C-w>l
 nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
+" python environment variables
+let $PYTHONUNBUFFERED = get(environ(), 'PYTHONUNBUFFERED', '1')
+
 " misc
 filetype plugin indent on
 syntax enable
@@ -240,8 +243,6 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 		let g:quickrun_config = get(g:, 'quickrun_config', {})
 		let g:quickrun_config['_'] = get(g:quickrun_config, '_', {})
 		let g:quickrun_config['_']['runner'] = 'job'
-		let g:quickrun_config['python'] = get(g:quickrun_config, 'python', {})
-		let g:quickrun_config['python']['cmdopt'] = '-u'
 	endif
 
 	" vim-fugitive

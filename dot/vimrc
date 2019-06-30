@@ -247,7 +247,7 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 
 	" sudo.vim
 	if has('unix') && executable('sudo')
-		Plug 'vim-scripts/sudo.vim'
+		Plug 'vim-scripts/sudo.vim', {'frozen': v:true}
 	endif
 
 	" vim-better-whitespace

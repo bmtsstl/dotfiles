@@ -17,6 +17,8 @@ let s:dir_backup   = s:dir_vim . '/backup'
 let s:dir_plug     = s:dir_vim . '/plug'
 let s:dir_swap     = s:dir_vim . '/swap'
 let s:dir_undo     = s:dir_vim . '/undo'
+let s:dir_cache    = s:dir_vim . '/cache'
+let s:dir_ctrlp    = s:dir_cache . '/ctrlp'
 
 let s:file_info  = s:dir_vim . '/viminfo'
 let s:file_local = s:dir_vim . '/vimrc.local'
@@ -34,6 +36,8 @@ call s:mkdir(s:dir_plug)
 call s:mkdir(s:dir_backup)
 call s:mkdir(s:dir_swap)
 call s:mkdir(s:dir_undo)
+call s:mkdir(s:dir_cache)
+call s:mkdir(s:dir_ctrlp)
 
 " functions
 function! s:set_list_prepend(name, ...) abort
@@ -236,6 +240,15 @@ if isdirectory(s:dir_plug) && filereadable(s:file_plug) && executable('git')
 	Plug 'cocopon/vaffle.vim'
 	let g:vaffle_force_delete = 1
 	let g:vaffle_show_hidden_files = 1
+
+	" ctrlp.vim
+	Plug 'ctrlpvim/ctrlp.vim'
+	let g:ctrlp_map = '<Leader>p'
+	let g:ctrlp_cmd = 'CtrlPMRU'
+	let g:ctrlp_working_path_mode = 'a'
+	let g:ctrlp_cache_dir = s:dir_ctrlp
+	let g:ctrlp_show_hidden = 1
+	let g:ctrlp_follow_symlinks = 1
 
 	" vim-quickrun
 	Plug 'thinca/vim-quickrun'

@@ -198,7 +198,9 @@ nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
 " python environment variables
-let $PYTHONUNBUFFERED = get(environ(), 'PYTHONUNBUFFERED', '1')
+if $PYTHONUNBUFFERED == ''
+	let $PYTHONUNBUFFERED = '1'
+endif
 
 " misc
 filetype plugin indent on

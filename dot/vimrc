@@ -220,7 +220,7 @@ set updatetime=300
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')
 	call s:mkdir(fnamemodify(s:file_plug, ':p:h'))
-	function! s:install_plug()
+	function! s:download_plug()
 		let l:tmp = tempname()
 		let l:out = ''
 		try
@@ -236,7 +236,7 @@ if !filereadable(s:file_plug) && executable('git')
 			call delete(l:tmp, 'rf')
 		endtry
 	endfunction
-	call s:install_plug()
+	call s:download_plug()
 endif
 
 if filereadable(s:file_plug) && executable('git')

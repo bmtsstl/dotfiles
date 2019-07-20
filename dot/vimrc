@@ -188,11 +188,6 @@ nnoremap <Leader>l <C-w>l
 nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
-" python environment variables
-if $PYTHONUNBUFFERED == ''
-	let $PYTHONUNBUFFERED = '1'
-endif
-
 " misc
 filetype plugin indent on
 syntax enable

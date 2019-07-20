@@ -216,13 +216,7 @@ if !filereadable(s:file_plug) && executable('git')
 		let l:tmp = tempname()
 		let l:out = ''
 		try
-			let l:out = system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:tmp . '"')
-			if v:shell_error
-				echohl ErrorMsg
-				echomsg 'Error installing vim-plug' . l:out
-				echohl None
-				return 1
-			endif
+			call system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:tmp . '"')
 			call rename(l:tmp . '/plug.vim', s:file_plug)
 		finally
 			call delete(l:tmp, 'rf')

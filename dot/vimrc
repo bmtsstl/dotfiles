@@ -132,10 +132,6 @@ let g:vim_indent_cont = 4
 set hlsearch
 set incsearch
 
-" wildmenu
-set wildmenu
-set wildchar=<Tab>
-
 " termguicolors
 if has('termguicolors')
 	set termguicolors
@@ -216,6 +212,7 @@ set ruler
 set scrolloff=5
 set showcmd
 set updatetime=300
+set wildmenu
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')

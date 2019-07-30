@@ -343,13 +343,13 @@ if filereadable(s:file_plug) && executable('git')
 	if !has('win32') || has('gui_running')
 		Plug 'cocopon/iceberg.vim', {'do': ':colorscheme iceberg'}
 
-		function! s:load_colorscheme_if_possible(name) abort
+		function! s:load_colorscheme_if_available(name) abort
 			try
 				execute 'colorscheme ' . a:name
 			catch /^Vim\%((\a\+)\)\=:E185:/
 			endtry
 		endfunction
-		autocmd vimrc User plug_end call s:load_colorscheme_if_possible('iceberg')
+		autocmd vimrc User plug_end call s:load_colorscheme_if_available('iceberg')
 	endif
 
 	" vimdoc-ja

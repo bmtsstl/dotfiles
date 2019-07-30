@@ -182,6 +182,9 @@ command! Maximize call s:cmd_maximize()
 set notimeout
 set ttimeout
 
+" python
+autocmd vimrc FileType python set colorcolumn=79
+
 " mapping
 let g:mapleader = "\<Space>"
 nnoremap <Leader> <Nop>

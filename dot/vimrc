@@ -195,6 +195,13 @@ nnoremap <Leader>l <C-w>l
 nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
+nnoremap c{ 0c{
+nnoremap c} 0c}
+nnoremap d{ 0d{
+nnoremap d} 0d}
+nnoremap y{ 0y{
+nnoremap y} 0y}
+
 " misc
 filetype plugin indent on
 syntax enable

@@ -222,7 +222,7 @@ onoremap <silent> } :<C-u>normal! 0v}k$<CR>
 " ----- fileytpe specific settings --------------
 
 " python
-autocmd vimrc FileType python set colorcolumn=79
+autocmd vimrc FileType python setlocal colorcolumn=79
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')

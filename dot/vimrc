@@ -64,7 +64,7 @@ endfunction
 " runtimepath
 call s:set_list_prepend('runtimepath', s:dir_vim)
 
-" ----- preferences -----------------------------
+" ----- options ---------------------------------
 
 " viminfo
 if has('viminfo')
@@ -158,45 +158,9 @@ set guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 " IM
 autocmd vimrc InsertLeave * set iminsert=0 imsearch=0
 
-" maximize
-function! s:cmd_maximize() abort
-	let l:current_winnr = winnr()
-	let l:use_only = v:true
-	for l:winnr in range(1, winnr('$'))
-		let l:bufnr = winbufnr(l:winnr)
-		if l:winnr != l:current_winnr && (bufname(l:bufnr) !=# '' || getbufvar(l:bufnr, '&modified'))
-			let l:use_only = v:false
-			break
-		endif
-	endfor
-
-	if l:use_only
-		only
-		return
-	endif
-	execute "normal! \<C-w>T"
-endfunction
-command! Maximize call s:cmd_maximize()
-
 " timeout
 set notimeout
 set ttimeout
-
-" python
-autocmd vimrc FileType python set colorcolumn=79
-
-" mapping
-let g:mapleader = "\<Space>"
-nnoremap <Leader> <Nop>
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
-nnoremap <Leader>l <C-w>l
-nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
-nnoremap <silent> <Leader>t :<C-u>tab split<CR>
-
-onoremap <silent> { :<C-u>normal! $v{<CR>
-onoremap <silent> } :<C-u>normal! 0v}k$<CR>
 
 " misc
 filetype plugin indent on
@@ -218,6 +182,47 @@ set scrolloff=5
 set showcmd
 set updatetime=300
 set wildmenu
+
+" ----- commands --------------------------------
+
+" maximize
+function! s:cmd_maximize() abort
+	let l:current_winnr = winnr()
+	let l:use_only = v:true
+	for l:winnr in range(1, winnr('$'))
+		let l:bufnr = winbufnr(l:winnr)
+		if l:winnr != l:current_winnr && (bufname(l:bufnr) !=# '' || getbufvar(l:bufnr, '&modified'))
+			let l:use_only = v:false
+			break
+		endif
+	endfor
+
+	if l:use_only
+		only
+		return
+	endif
+	execute "normal! \<C-w>T"
+endfunction
+command! Maximize call s:cmd_maximize()
+
+" ----- mappings --------------------------------
+
+let g:mapleader = "\<Space>"
+nnoremap <Leader> <Nop>
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
+nnoremap <silent> <Leader>t :<C-u>tab split<CR>
+
+onoremap <silent> { :<C-u>normal! $v{<CR>
+onoremap <silent> } :<C-u>normal! 0v}k$<CR>
+
+" ----- fileytpe specific settings --------------
+
+" python
+autocmd vimrc FileType python set colorcolumn=79
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')

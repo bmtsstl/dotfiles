@@ -195,12 +195,8 @@ nnoremap <Leader>l <C-w>l
 nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
-nnoremap c{ 0c{
-nnoremap c} 0c}
-nnoremap d{ 0d{
-nnoremap d} 0d}
-nnoremap y{ 0y{
-nnoremap y} 0y}
+onoremap <silent> { :<C-u>normal! $v{<CR>
+onoremap <silent> } :<C-u>normal! 0v}k$<CR>
 
 " misc
 filetype plugin indent on

@@ -94,7 +94,6 @@ set guioptions+=!
 set guioptions-=a guioptions-=P guioptions-=A
 set guioptions+=c
 set guioptions-=e
-set guioptions-=i
 set guioptions-=m guioptions+=M
 set guioptions-=T
 set guioptions-=r guioptions-=R

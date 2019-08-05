@@ -129,7 +129,6 @@ set fileformats-=unix fileformats^=unix
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
-let g:vim_indent_cont = 4
 
 " search highlight
 set hlsearch
@@ -219,6 +218,9 @@ onoremap <silent> { :<C-u>normal! V{j<CR>
 onoremap <silent> } :<C-u>normal! V}k<CR>
 
 " ----- fileytpe specific settings --------------
+
+" vim
+let g:vim_indent_cont = 4
 
 " python
 autocmd vimrc FileType python setlocal colorcolumn=79

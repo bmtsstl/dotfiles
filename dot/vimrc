@@ -328,6 +328,7 @@ if filereadable(s:file_plug) && executable('git')
 			\ 'diagnostic.infoSign': 'I>',
 			\ 'diagnostic.hintSign': 'H>',
 			\ 'signature.enable': v:false,
+			\ 'coc.preferences.extensionUpdateCheck': 'never',
 			\ 'languageserver': {},
 			\ }
 

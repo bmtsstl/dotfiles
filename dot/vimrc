@@ -317,35 +317,45 @@ if filereadable(s:file_plug) && executable('git')
 	" vim-toml
 	Plug 'cespare/vim-toml'
 
-	" coc.nvim
-	if v:version >= 801 && executable('node')
-		Plug 'neoclide/coc.nvim', {'branch': 'release'}
-		let g:coc_user_config = {
-			\ 'suggest.autoTrigger': 'none',
-			\ 'diagnostic.refreshOnInsertMode': v:true,
-			\ 'diagnostic.errorSign': 'E>',
-			\ 'diagnostic.warningSign': 'W>',
-			\ 'diagnostic.infoSign': 'I>',
-			\ 'diagnostic.hintSign': 'H>',
-			\ 'signature.enable': v:false,
-			\ 'coc.preferences.extensionUpdateCheck': 'never',
-			\ 'languageserver': {},
-			\ }
+	" ALE
+	if has('job') && has('timers')
+		Plug 'dense-analysis/ale'
 
-		function! s:coc_setup_buffer()
-			inoremap <buffer><silent><expr> <C-x><C-o> coc#refresh()
-			map <buffer><silent> gd <Plug>(coc-definition)
-			autocmd vimrc BufWrite <buffer> call CocAction('format')
-		endfunction
-
+		let g:ale_linters = get(g:, 'ale_linters', {})
+		let g:ale_linters['python'] = get(g:ale_linters, 'python', [])
 		if executable('pyls')
-			let g:coc_user_config['languageserver']['pyls'] = {
-				\ 'command': 'pyls',
-				\ 'filetypes': ['python'],
-				\ 'settings': {'pyls': {'plugins': {'pylint': {'enabled': v:false}}}},
+			call add(g:ale_linters['python'], 'pyls')
+			let g:ale_python_pyls_config = {
+				\	'pyls': {
+				\		'plugins': {
+				\			'jedi_completion': {'enabled': v:true},
+				\			'jedi_definition': {'enabled': v:true},
+				\			'jedi_hover': {'enabled': v:true},
+				\			'jedi_references': {'enabled': v:true},
+				\			'mccabe': {'enabled': v:false},
+				\			'preload': {'enabled': v:false},
+				\			'pycodestyle': {'enabled': v:true},
+				\			'pydocstyle': {'enabled': v:false},
+				\			'pyflakes': {'enabled': v:false},
+				\			'pylint': {'enabled': v:false},
+				\			'rope_completion': {'enabled': v:true},
+				\		},
+				\	},
 				\ }
-			autocmd vimrc FileType python call s:coc_setup_buffer()
+		else
+			call add(g:ale_linters['python'], 'pycodestyle')
 		endif
+
+		let g:ale_fixers = get(g:, 'ale_fixers', {})
+		let g:ale_fixers['python'] = get(g:ale_fixers, 'python', [])
+		call extend(g:ale_fixers['python'], ['yapf', 'isort'])
+
+		let g:ale_fix_on_save = 1
+		if &pumheight > 0
+			let g:ale_completion_max_suggestions = &pumheight
+		endif
+		set omnifunc=ale#completion#OmniFunc
+		nmap gd <Plug>(ale_go_to_definition)
 	endif
 
 	" iceberg.vim

@@ -318,7 +318,7 @@ if filereadable(s:file_plug) && executable('git')
 	Plug 'cespare/vim-toml'
 
 	" ALE
-	if has('job') && has('timers')
+	if v:version >= 800 && has('timers') && has('job') && has('channel')
 		Plug 'dense-analysis/ale'
 
 		let g:ale_linters = get(g:, 'ale_linters', {})

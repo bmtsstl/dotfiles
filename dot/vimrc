@@ -336,14 +336,14 @@ if filereadable(s:file_plug) && executable('git')
 				\			'preload': {'enabled': v:false},
 				\			'pycodestyle': {'enabled': v:true},
 				\			'pydocstyle': {'enabled': v:false},
-				\			'pyflakes': {'enabled': v:false},
+				\			'pyflakes': {'enabled': v:true},
 				\			'pylint': {'enabled': v:false},
 				\			'rope_completion': {'enabled': v:true},
 				\		},
 				\	},
 				\ }
 		else
-			call add(g:ale_linters['python'], 'pycodestyle')
+			call extend(g:ale_linters['python'], ['pycodestyle', 'pyflakes'])
 		endif
 
 		let g:ale_fixers = get(g:, 'ale_fixers', {})

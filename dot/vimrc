@@ -307,13 +307,6 @@ if filereadable(s:file_plug) && executable('git')
 	Plug 'ciaranm/detectindent'
 	autocmd vimrc BufRead * call s:execute_if_available('DetectIndent')
 
-	" vim-go
-	if executable('go')
-		Plug 'fatih/vim-go'
-		let g:go_fmt_autosave = 1
-		let g:go_fmt_command = 'goimports'
-	endif
-
 	" vim-toml
 	Plug 'cespare/vim-toml'
 

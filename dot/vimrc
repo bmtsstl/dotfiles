@@ -347,6 +347,14 @@ if filereadable(s:file_plug) && executable('git')
 			let g:ale_linters['python'] = ['pycodestyle', 'pyflakes']
 		endif
 		let g:ale_fixers['python'] = ['yapf', 'isort']
+
+		" go
+		let g:ale_linters['go'] = ['gofmt', 'govet']
+		if executable('goimports')
+			let g:ale_fixers['go'] = ['goimports']
+		else
+			let g:ale_fixers['go'] = ['gofmt']
+		endif
 	endif
 
 	" iceberg.vim

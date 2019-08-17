@@ -313,11 +313,19 @@ if filereadable(s:file_plug) && executable('git')
 	" ALE
 	if v:version >= 800 && has('timers') && has('job') && has('channel')
 		Plug 'dense-analysis/ale'
+		let g:ale_fix_on_save = 1
+		if &pumheight > 0
+			let g:ale_completion_max_suggestions = &pumheight
+		endif
+		set omnifunc=ale#completion#OmniFunc
+		nmap gd <Plug>(ale_go_to_definition)
 
 		let g:ale_linters = get(g:, 'ale_linters', {})
-		let g:ale_linters['python'] = get(g:ale_linters, 'python', [])
+		let g:ale_fixers = get(g:, 'ale_fixers', {})
+
+		" python
 		if executable('pyls')
-			call add(g:ale_linters['python'], 'pyls')
+			let g:ale_linters['python'] = ['pyls']
 			let g:ale_python_pyls_config = {
 				\	'pyls': {
 				\		'plugins': {
@@ -336,19 +344,9 @@ if filereadable(s:file_plug) && executable('git')
 				\	},
 				\ }
 		else
-			call extend(g:ale_linters['python'], ['pycodestyle', 'pyflakes'])
+			let g:ale_linters['python'] = ['pycodestyle', 'pyflakes']
 		endif
-
-		let g:ale_fixers = get(g:, 'ale_fixers', {})
-		let g:ale_fixers['python'] = get(g:ale_fixers, 'python', [])
-		call extend(g:ale_fixers['python'], ['yapf', 'isort'])
-
-		let g:ale_fix_on_save = 1
-		if &pumheight > 0
-			let g:ale_completion_max_suggestions = &pumheight
-		endif
-		set omnifunc=ale#completion#OmniFunc
-		nmap gd <Plug>(ale_go_to_definition)
+		let g:ale_fixers['python'] = ['yapf', 'isort']
 	endif
 
 	" iceberg.vim

@@ -310,6 +310,47 @@ if filereadable(s:file_plug) && executable('git')
 	" vim-toml
 	Plug 'cespare/vim-toml'
 
+	" vim-lsp
+	if exists('*json_encode') && has('job') && has('timers') && has('lambda')
+		Plug 'prabirshrestha/async.vim'
+		Plug 'prabirshrestha/vim-lsp'
+
+		function! s:lsp_setup_buffer(filetype)
+			setlocal omnifunc=lsp#complete
+			nmap <buffer> gd <Plug>(lsp-definition)
+			nmap <buffer> <leader>f <Plug>(lsp-document-format)
+		endfunction
+
+		let g:lsp_diagnostics_echo_cursor = 1
+		if executable('pyls')
+			autocmd vimrc User lsp_setup call lsp#register_server({
+				\	'name': 'pyls',
+				\	'cmd': ['pyls'],
+				\	'whitelist': ['python'],
+				\	'workspace_config': {
+				\		'pyls': {
+				\			'plugins': {
+				\				'jedi_completion': {'enabled': v:true},
+				\				'jedi_definition': {'enabled': v:true},
+				\				'jedi_hover': {'enabled': v:true},
+				\				'jedi_references': {'enabled': v:true},
+				\				'jedi_signature_help': {'enabled': v:true},
+				\				'jedi_symbols': {'enabled': v:true},
+				\				'mccabe': {'enabled': v:true},
+				\				'pycodestyle': {'enabled': v:true},
+				\				'pydocstyle': {'enabled': v:false},
+				\				'pyflakes': {'enabled': v:false},
+				\				'pylint': {'enabled': v:false},
+				\				'rope_completion': {'enabled': v:true},
+				\				'yapf': {'enabled': v:true},
+				\			}
+				\		}
+				\	},
+				\ })
+			autocmd vimrc FileType python call s:lsp_setup_buffer('python')
+		endif
+	endif
+
 	" iceberg.vim
 	if !has('win32') || has('gui_running')
 		Plug 'cocopon/iceberg.vim', {'do': ':colorscheme iceberg'}

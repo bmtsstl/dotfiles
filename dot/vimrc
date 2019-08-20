@@ -310,53 +310,6 @@ if filereadable(s:file_plug) && executable('git')
 	" vim-toml
 	Plug 'cespare/vim-toml'
 
-	" ALE
-	if v:version >= 800 && has('timers') && has('job') && has('channel')
-		Plug 'dense-analysis/ale'
-		let g:ale_fix_on_save = 1
-		if &pumheight > 0
-			let g:ale_completion_max_suggestions = &pumheight
-		endif
-		set omnifunc=ale#completion#OmniFunc
-		nmap gd <Plug>(ale_go_to_definition)
-
-		let g:ale_linters = get(g:, 'ale_linters', {})
-		let g:ale_fixers = get(g:, 'ale_fixers', {})
-
-		" python
-		if executable('pyls')
-			let g:ale_linters['python'] = ['pyls']
-			let g:ale_python_pyls_config = {
-				\	'pyls': {
-				\		'plugins': {
-				\			'jedi_completion': {'enabled': v:true},
-				\			'jedi_definition': {'enabled': v:true},
-				\			'jedi_hover': {'enabled': v:true},
-				\			'jedi_references': {'enabled': v:true},
-				\			'mccabe': {'enabled': v:false},
-				\			'preload': {'enabled': v:false},
-				\			'pycodestyle': {'enabled': v:true},
-				\			'pydocstyle': {'enabled': v:false},
-				\			'pyflakes': {'enabled': v:true},
-				\			'pylint': {'enabled': v:false},
-				\			'rope_completion': {'enabled': v:true},
-				\		},
-				\	},
-				\ }
-		else
-			let g:ale_linters['python'] = ['pycodestyle', 'pyflakes']
-		endif
-		let g:ale_fixers['python'] = ['yapf', 'isort']
-
-		" go
-		let g:ale_linters['go'] = ['gofmt', 'govet']
-		if executable('goimports')
-			let g:ale_fixers['go'] = ['goimports']
-		else
-			let g:ale_fixers['go'] = ['gofmt']
-		endif
-	endif
-
 	" iceberg.vim
 	if !has('win32') || has('gui_running')
 		Plug 'cocopon/iceberg.vim', {'do': ':colorscheme iceberg'}

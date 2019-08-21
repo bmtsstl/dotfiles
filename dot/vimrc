@@ -339,7 +339,7 @@ if filereadable(s:file_plug) && executable('git')
 				\				'mccabe': {'enabled': v:true},
 				\				'pycodestyle': {'enabled': v:true},
 				\				'pydocstyle': {'enabled': v:false},
-				\				'pyflakes': {'enabled': v:false},
+				\				'pyflakes': {'enabled': v:true},
 				\				'pylint': {'enabled': v:false},
 				\				'rope_completion': {'enabled': v:true},
 				\				'yapf': {'enabled': v:true},

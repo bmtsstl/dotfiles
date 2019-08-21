@@ -316,7 +316,7 @@ if filereadable(s:file_plug) && executable('git')
 		Plug 'prabirshrestha/vim-lsp'
 		let g:lsp_diagnostics_echo_cursor = 1
 
-		function! s:lsp_setup_buffer(filetype)
+		function! s:lsp_setup_buffer()
 			setlocal omnifunc=lsp#complete
 			nmap <buffer> gd <Plug>(lsp-definition)
 			nmap <buffer> <leader>f <Plug>(lsp-document-format)
@@ -347,7 +347,7 @@ if filereadable(s:file_plug) && executable('git')
 				\		}
 				\	},
 				\ })
-			autocmd vimrc FileType python call s:lsp_setup_buffer('python')
+			autocmd vimrc FileType python call s:lsp_setup_buffer()
 		endif
 
 		if executable('gopls')
@@ -356,7 +356,7 @@ if filereadable(s:file_plug) && executable('git')
 				\	'cmd': ['gopls'],
 				\	'whitelist': ['go'],
 				\ })
-			autocmd vimrc FileType go call s:lsp_setup_buffer('go')
+			autocmd vimrc FileType go call s:lsp_setup_buffer()
 		endif
 	endif
 

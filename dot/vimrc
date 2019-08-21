@@ -314,6 +314,7 @@ if filereadable(s:file_plug) && executable('git')
 	if exists('*json_encode') && has('job') && has('timers') && has('lambda')
 		Plug 'prabirshrestha/async.vim'
 		Plug 'prabirshrestha/vim-lsp'
+		let g:lsp_diagnostics_echo_cursor = 1
 
 		function! s:lsp_setup_buffer(filetype)
 			setlocal omnifunc=lsp#complete
@@ -321,7 +322,6 @@ if filereadable(s:file_plug) && executable('git')
 			nmap <buffer> <leader>f <Plug>(lsp-document-format)
 		endfunction
 
-		let g:lsp_diagnostics_echo_cursor = 1
 		if executable('pyls')
 			autocmd vimrc User lsp_setup call lsp#register_server({
 				\	'name': 'pyls',
@@ -348,6 +348,15 @@ if filereadable(s:file_plug) && executable('git')
 				\	},
 				\ })
 			autocmd vimrc FileType python call s:lsp_setup_buffer('python')
+		endif
+
+		if executable('gopls')
+			autocmd vimrc User lsp_setup call lsp#register_server({
+				\	'name': 'gopls',
+				\	'cmd': ['gopls'],
+				\	'whitelist': ['go'],
+				\ })
+			autocmd vimrc FileType go call s:lsp_setup_buffer('go')
 		endif
 	endif
 

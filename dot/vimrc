@@ -164,6 +164,7 @@ set ttimeout
 filetype plugin indent on
 syntax enable
 set autoread
+set autochdir
 set background=dark
 set backspace=indent,eol,start
 set cursorline

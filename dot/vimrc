@@ -316,6 +316,7 @@ if filereadable(s:file_plug) && executable('git')
 		Plug 'prabirshrestha/async.vim'
 		Plug 'prabirshrestha/vim-lsp'
 		let g:lsp_diagnostics_echo_cursor = 1
+		let g:lsp_signature_help_enabled = 0
 
 		function! s:lsp_setup_buffer()
 			setlocal omnifunc=lsp#complete

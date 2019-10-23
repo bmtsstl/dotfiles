@@ -113,6 +113,9 @@ if has('gui_win32')
 	set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
 	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
+if has('win32'):
+	set printfont=Consolas:h11
+endif
 
 " gui size
 if has('gui')
@@ -159,6 +162,11 @@ autocmd vimrc InsertLeave * set iminsert=0 imsearch=0
 " timeout
 set notimeout
 set ttimeout
+
+" hardcopy
+set printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
+set printoptions+=header:2,syntax:n,number:y,wrap:y,duplex:off,collate:y
+set printoptions+=jobsplit:n,portrait:y,paper:A4,formfeed:n
 
 " misc
 filetype plugin indent on

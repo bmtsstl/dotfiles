@@ -113,7 +113,7 @@ if has('gui_win32')
 	set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
 	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
-if has('win32'):
+if has('win32')
 	set printfont=Consolas:h11
 endif
 

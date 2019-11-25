@@ -74,12 +74,16 @@ endif
 
 " backup
 call s:mkdir(s:dir_backup)
-call s:set_list_prepend('backupdir', s:dir_backup)
+if has('patch-8.1.0251')
+	call s:set_list_prepend('backupdir', s:dir_backup . '//')
+else
+	call s:set_list_prepend('backupdir', s:dir_backup)
+endif
 set backup writebackup
 
 " swap
 call s:mkdir(s:dir_swap)
-call s:set_list_prepend('directory', s:dir_swap)
+call s:set_list_prepend('directory', s:dir_swap . '//')
 set swapfile
 
 " undo

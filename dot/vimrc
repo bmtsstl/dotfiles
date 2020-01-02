@@ -1,8 +1,8 @@
 " ----- initialize ------------------------------
 
 " encoding
-set termencoding=default
-set encoding=utf-8
+setglobal termencoding=default
+setglobal encoding=utf-8
 scriptencoding utf-8
 
 " autocmd
@@ -79,71 +79,71 @@ if has('patch-8.1.0251')
 else
 	call s:set_list_prepend('backupdir', s:dir_backup)
 endif
-set backup writebackup
+setglobal backup writebackup
 
 " swap
 call s:mkdir(s:dir_swap)
 call s:set_list_prepend('directory', s:dir_swap . '//')
-set swapfile
+setglobal swapfile
 
 " undo
 if has('persistent_undo')
 	call s:mkdir(s:dir_undo)
 	call s:set_list_prepend('undodir', s:dir_undo)
-	set undofile
+	setglobal undofile
 endif
 
 " gui
-set guioptions+=!
-set guioptions-=a guioptions-=P guioptions-=A
-set guioptions+=c
-set guioptions-=e
-set guioptions-=m guioptions+=M
-set guioptions-=T
-set guioptions-=r guioptions-=R
-set guioptions-=l guioptions-=L
-set guioptions-=b
-set guioptions-=F
+setglobal guioptions+=!
+setglobal guioptions-=a guioptions-=P guioptions-=A
+setglobal guioptions+=c
+setglobal guioptions-=e
+setglobal guioptions-=m guioptions+=M
+setglobal guioptions-=T
+setglobal guioptions-=r guioptions-=R
+setglobal guioptions-=l guioptions-=L
+setglobal guioptions-=b
+setglobal guioptions-=F
 
 " directx
 if has('directx')
-	set renderoptions=type:directx,renmode:5
+	setglobal renderoptions=type:directx,renmode:5
 endif
 
 " font
 if has('gui_win32')
-	set guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
-	set guifont-=Consolas:h11 guifont^=Consolas:h11
-	set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
-	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
+	setglobal guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
+	setglobal guifont-=Consolas:h11 guifont^=Consolas:h11
+	setglobal guifontwide-=MS_Gothic guifontwide^=MS_Gothic
+	setglobal guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
 if has('win32')
-	set printfont=Consolas:h11
+	setglobal printfont=Consolas:h11
 endif
 
 " gui size
 if has('gui')
-	set lines=36
-	set columns=120
+	setglobal lines=36
+	setglobal columns=120
 endif
 
 " encoding & newline
-set fileencodings-=cp932 fileencodings-=utf-8 fileencodings-=ucs-bom
-set fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
-set fileformats-=unix fileformats^=unix
+setglobal fileencodings-=cp932 fileencodings-=utf-8 fileencodings-=ucs-bom
+setglobal fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
+setglobal fileformats-=unix fileformats^=unix
 
 " indent
-set noexpandtab
-set tabstop=4
-set shiftwidth=4
+setglobal noexpandtab
+setglobal tabstop=4
+setglobal shiftwidth=4
 
 " search highlight
-set hlsearch
-set incsearch
+setglobal hlsearch
+setglobal incsearch
 
 " termguicolors
 if has('termguicolors')
-	set termguicolors
+	setglobal termguicolors
 	if $TERM ==# 'tmux-256color' || $TERM ==# 'screen-256color'
 		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -156,42 +156,42 @@ if &term !=# 'win32'
 	let &t_SR .= "\e[3 q"
 	let &t_EI .= "\e[1 q"
 endif
-set guicursor=a:block-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
-set guicursor+=i-ci:ver10-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
-set guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
+setglobal guicursor=a:block-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
+setglobal guicursor+=i-ci:ver10-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
+setglobal guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 
 " IM
-autocmd vimrc InsertLeave * set iminsert=0 imsearch=0
+autocmd vimrc InsertLeave * setglobal iminsert=0 imsearch=0
 
 " timeout
-set notimeout
-set ttimeout
+setglobal notimeout
+setglobal ttimeout
 
 " hardcopy
-set printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
-set printoptions+=header:2,syntax:n,number:y,wrap:y,duplex:off,collate:y
-set printoptions+=jobsplit:n,portrait:y,paper:A4,formfeed:n
+setglobal printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
+setglobal printoptions+=header:2,syntax:n,number:y,wrap:y,duplex:off,collate:y
+setglobal printoptions+=jobsplit:n,portrait:y,paper:A4,formfeed:n
 
 " misc
 filetype plugin indent on
 syntax enable
-set autoread
-set autochdir
-set background=dark
-set backspace=indent,eol,start
-set cursorline
-set display+=lastline
-set hidden
-set laststatus=2
-set lazyredraw
-set nomodeline
-set nowrap
-set number
-set pumheight=10
-set ruler
-set scrolloff=5
-set updatetime=300
-set wildmenu
+setglobal autoread
+setglobal autochdir
+setglobal background=dark
+setglobal backspace=indent,eol,start
+setglobal cursorline
+setglobal display+=lastline
+setglobal hidden
+setglobal laststatus=2
+setglobal lazyredraw
+setglobal nomodeline
+setglobal nowrap
+setglobal number
+setglobal pumheight=10
+setglobal ruler
+setglobal scrolloff=5
+setglobal updatetime=300
+setglobal wildmenu
 
 " ----- commands --------------------------------
 
@@ -391,7 +391,7 @@ if filereadable(s:file_plug) && executable('git')
 
 	" vimdoc-ja
 	Plug 'vim-jp/vimdoc-ja'
-	set helplang^=ja
+	setglobal helplang^=ja
 
 	call plug#end()
 	autocmd vimrc User plug_end silent " at least one autocommand should be registered

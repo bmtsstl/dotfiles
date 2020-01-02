@@ -240,13 +240,12 @@ autocmd vimrc FileType python setlocal colorcolumn=79
 if !filereadable(s:file_plug) && executable('git')
 	call s:mkdir(fnamemodify(s:file_plug, ':p:h'))
 	function! s:download_plug()
-		let l:tmp = tempname()
-		let l:out = ''
+		let l:file_temp = tempname()
 		try
-			call system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:tmp . '"')
-			call rename(l:tmp . '/plug.vim', s:file_plug)
+			call system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:file_temp . '"')
+			call rename(l:file_temp . '/plug.vim', s:file_plug)
 		finally
-			call delete(l:tmp, 'rf')
+			call delete(l:file_temp, 'rf')
 		endtry
 	endfunction
 	call s:download_plug()

@@ -106,11 +106,6 @@ setglobal guioptions-=l guioptions-=L
 setglobal guioptions-=b
 setglobal guioptions-=F
 
-" directx
-if has('directx')
-	setglobal renderoptions=type:directx,renmode:5
-endif
-
 " font
 if has('gui_win32')
 	setglobal guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
@@ -189,6 +184,7 @@ setglobal nomodeline
 setglobal nowrap
 setglobal number
 setglobal pumheight=10
+setglobal renderoptions=type:directx,renmode:5
 setglobal ruler
 setglobal scrolloff=5
 setglobal updatetime=300

@@ -224,8 +224,9 @@ nnoremap <Leader>l <C-w>l
 nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 
-onoremap <silent> { :<C-u>normal! V{j<CR>
-onoremap <silent> } :<C-u>normal! V}k<CR>
+onoremap <Leader> <Nop>
+onoremap <silent> <Leader>{ :<C-u>normal! V{j<CR>
+onoremap <silent> <Leader>} :<C-u>normal! V}k<CR>
 
 " ----- fileytpe specific settings --------------
 

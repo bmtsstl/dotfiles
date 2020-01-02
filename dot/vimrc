@@ -391,7 +391,7 @@ if filereadable(s:file_plug) && executable('git')
 
 	" vimdoc-ja
 	Plug 'vim-jp/vimdoc-ja'
-	set helplang=ja
+	set helplang^=ja
 
 	call plug#end()
 	autocmd vimrc User plug_end silent " at least one autocommand should be registered

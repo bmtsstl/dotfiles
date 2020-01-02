@@ -158,6 +158,7 @@ setglobal guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCurs
 
 " IM
 autocmd vimrc InsertLeave * setglobal iminsert=0 imsearch=0
+autocmd vimrc CmdlineLeave * setglobal iminsert=0 imsearch=0
 
 " timeout
 setglobal notimeout

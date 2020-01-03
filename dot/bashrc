@@ -74,15 +74,6 @@ if [ -f ~/.bash_aliases ]; then
 	source ~/.bash_aliases
 fi
 
-# programmable completion features
-if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		source /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		source /etc/bash_completion
-	fi
-fi
-
 # local
 if [ -f "$HOME/.bashrc_local" ]; then
 	source "$HOME/.bashrc_local"

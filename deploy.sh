@@ -1,10 +1,10 @@
 #/bin/bash
-DOTFILES="$(cd $(dirname $0); pwd)/dot"
+DOT="$(cd $(dirname $0); pwd)/dot"
 
-ln --backup --symbolic "${DOTFILES}/bash_profile" ~/.bash_profile
-ln --backup --symbolic "${DOTFILES}/bashrc" ~/.bashrc
-ln --backup --symbolic "${DOTFILES}/tmux.conf" ~/.tmux.conf
+ln --backup --symbolic "${DOT}/bash_profile" ~/.bash_profile
+ln --backup --symbolic "${DOT}/bashrc" ~/.bashrc
+ln --backup --symbolic "${DOT}/tmux.conf" ~/.tmux.conf
 
 mkdir -pm 700 ~/.vim
-ln --backup --symbolic "${DOTFILES}/vimrc" ~/.vim/vimrc
-ln --backup --symbolic "${DOTFILES}/gvimrc" ~/.vim/gvimrc
+ln --backup --symbolic "${DOT}/vimrc" ~/.vim/vimrc
+ln --backup --symbolic "${DOT}/gvimrc" ~/.vim/gvimrc

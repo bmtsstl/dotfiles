@@ -4,7 +4,7 @@ cd "%~dp0"
 git pull --ff-only
 if %ERRORLEVEL% NEQ 0 (
 	pause
-	exit
+	exit /b
 )
 
 call deploy.bat

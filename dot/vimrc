@@ -126,7 +126,7 @@ set fileencodings^=cp932 fileencodings^=utf-8 fileencodings^=ucs-bom
 set fileformats-=unix fileformats^=unix
 
 " indent
-set noexpandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 

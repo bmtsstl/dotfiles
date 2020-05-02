@@ -331,7 +331,7 @@ if filereadable(s:file_plug) && executable('git')
 		function! s:lsp_setup_buffer()
 			setlocal omnifunc=lsp#complete
 			nmap <buffer> gd <Plug>(lsp-definition)
-			nmap <buffer> <leader>f <Plug>(lsp-document-format)
+			nmap <buffer> <Leader>f <Plug>(lsp-document-format)
 		endfunction
 
 		if executable('pyls')

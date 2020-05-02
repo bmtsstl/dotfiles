@@ -375,7 +375,7 @@ if filereadable(s:file_plug) && executable('git')
 	endif
 
 	" iceberg.vim
-	if has('gui_running') || !has('win32') || has('vtp')
+	if has('gui_running') || &termguicolors || &t_Co >= 256
 		Plug 'cocopon/iceberg.vim', {'do': ':colorscheme iceberg'}
 
 		function! s:load_colorscheme_if_available(name) abort

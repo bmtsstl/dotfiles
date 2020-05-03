@@ -181,7 +181,6 @@ set pumheight=10
 set renderoptions=type:directx,renmode:5
 set ruler
 set scrolloff=5
-set updatetime=300
 set wildmenu
 
 " ----- commands --------------------------------

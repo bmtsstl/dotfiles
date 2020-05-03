@@ -307,8 +307,6 @@ if filereadable(s:file_plug) && executable('git')
 	" vim-better-whitespace
 	Plug 'ntpeters/vim-better-whitespace'
 	let g:better_whitespace_operator = ''
-	let g:better_whitespace_ctermcolor = 'darkred'
-	let g:better_whitespace_guicolor = 'darkred'
 	if exists('##TerminalOpen')
 		autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
 	endif

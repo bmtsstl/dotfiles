@@ -375,7 +375,7 @@ if filereadable(s:file_plug) && executable('git')
 			catch /^Vim\%((\a\+)\)\=:E185:/
 			endtry
 		endfunction
-		autocmd vimrc User plug_end ++nested call s:load_colorscheme_if_available('iceberg')
+		autocmd vimrc User vimrc_plug_end ++nested call s:load_colorscheme_if_available('iceberg')
 	endif
 
 	" vimdoc-ja
@@ -383,8 +383,8 @@ if filereadable(s:file_plug) && executable('git')
 	set helplang^=ja
 
 	call plug#end()
-	autocmd vimrc User plug_end silent " at least one autocommand should be registered
-	doautocmd vimrc User plug_end
+	autocmd vimrc User vimrc_plug_end silent " at least one autocommand should be registered
+	doautocmd vimrc User vimrc_plug_end
 endif
 
 " ----- local -----------------------------------

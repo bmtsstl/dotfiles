@@ -174,7 +174,6 @@ filetype plugin indent on
 syntax enable
 set autochdir
 set autoread
-set background=dark
 set backspace=indent,eol,start
 set cursorline
 set display+=lastline

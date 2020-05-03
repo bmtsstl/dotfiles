@@ -385,7 +385,7 @@ if filereadable(s:file_plug) && executable('git')
 			catch /^Vim\%((\a\+)\)\=:E185:/
 			endtry
 		endfunction
-		autocmd vimrc User plug_end call s:load_colorscheme_if_available('iceberg')
+		autocmd vimrc User plug_end ++nested call s:load_colorscheme_if_available('iceberg')
 	endif
 
 	" vimdoc-ja

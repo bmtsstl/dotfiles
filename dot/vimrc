@@ -314,7 +314,6 @@ if filereadable(s:file_plug) && executable('git')
 
 	" vim-lsp
 	if exists('*json_encode') && has('job') && has('timers') && has('lambda')
-		Plug 'prabirshrestha/async.vim'
 		Plug 'prabirshrestha/vim-lsp'
 		let g:lsp_diagnostics_float_cursor = has('popupwin')
 		let g:lsp_signature_help_enabled = 0

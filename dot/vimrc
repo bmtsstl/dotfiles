@@ -128,6 +128,11 @@ set shiftwidth=4
 set hlsearch
 set incsearch
 
+" scroll
+set scrolloff=5
+set sidescroll=1
+set sidescrolloff=5
+
 " termguicolors
 if has('termguicolors')
 	if $TERM ==# 'tmux-256color' || $TERM ==# 'screen-256color'
@@ -181,7 +186,6 @@ set number
 set pumheight=10
 set renderoptions=type:directx,renmode:5
 set ruler
-set scrolloff=5
 set wildmenu
 
 " ----- commands --------------------------------

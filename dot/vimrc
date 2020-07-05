@@ -124,6 +124,10 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+" wrap
+set wrap
+set breakindent
+
 " search highlight
 set hlsearch
 set incsearch
@@ -181,7 +185,6 @@ set hidden
 set laststatus=2
 set lazyredraw
 set nomodeline
-set nowrap
 set number
 set pumheight=10
 set renderoptions=type:directx,renmode:5

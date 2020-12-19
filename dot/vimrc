@@ -229,9 +229,6 @@ nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 " vim
 let g:vim_indent_cont = 4
 
-" python
-autocmd vimrc FileType python setlocal colorcolumn=79
-
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')
 	call s:mkdir(fnamemodify(s:file_plug, ':p:h'))

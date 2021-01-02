@@ -224,18 +224,9 @@ nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 let g:vim_indent_cont = 4
 
 " ----- plugins ---------------------------------
-if !filereadable(s:file_plug) && executable('git')
+if !filereadable(s:file_plug) && executable('git') && executable('curl')
 	call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)
-	function! s:download_plug() abort
-		let l:file_temp = tempname()
-		try
-			call system('git clone --depth 1 https://github.com/junegunn/vim-plug.git "' . l:file_temp . '"')
-			call rename(l:file_temp . '/plug.vim', s:file_plug)
-		finally
-			call delete(l:file_temp, 'rf')
-		endtry
-	endfunction
-	call s:download_plug()
+	call system('curl -fLo "' . s:file_plug . '" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 endif
 
 if filereadable(s:file_plug) && executable('git')

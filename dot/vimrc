@@ -26,12 +26,6 @@ let s:dir_ctrlp = s:dir_cache . '/ctrlp'
 let s:file_plug = s:dir_autoload . '/plug.vim'
 
 " function
-function! s:mkdir(dir) abort
-	if !isdirectory(a:dir)
-		call mkdir(a:dir, 'p', 0700)
-	endif
-endfunction
-
 function! s:set_list_prepend(name, ...) abort
 	if !exists('&' . a:name)
 		throw 'unknown option: ' . a:name
@@ -69,12 +63,12 @@ call s:set_list_prepend('runtimepath', s:dir_vim)
 
 " viminfo
 if has('viminfo')
-	call s:mkdir(fnamemodify(s:file_info, ':p:h'))
+	call mkdir(fnamemodify(s:file_info, ':p:h'), 'p', 0700)
 	let &viminfo = "'100,<50,s10,h,n" . s:file_info
 endif
 
 " backup
-call s:mkdir(s:dir_backup)
+call mkdir(s:dir_backup, 'p', 0700)
 if has('patch-8.1.0251')
 	call s:set_list_prepend('backupdir', s:dir_backup . '//')
 else
@@ -83,13 +77,13 @@ endif
 set backup writebackup
 
 " swap
-call s:mkdir(s:dir_swap)
+call mkdir(s:dir_swap, 'p', 0700)
 call s:set_list_prepend('directory', s:dir_swap . '//')
 set swapfile
 
 " undo
 if has('persistent_undo')
-	call s:mkdir(s:dir_undo)
+	call mkdir(s:dir_undo, 'p', 0700)
 	call s:set_list_prepend('undodir', s:dir_undo)
 	set undofile
 endif
@@ -231,7 +225,7 @@ let g:vim_indent_cont = 4
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git')
-	call s:mkdir(fnamemodify(s:file_plug, ':p:h'))
+	call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)
 	function! s:download_plug() abort
 		let l:file_temp = tempname()
 		try
@@ -245,7 +239,7 @@ if !filereadable(s:file_plug) && executable('git')
 endif
 
 if filereadable(s:file_plug) && executable('git')
-	call s:mkdir(s:dir_plug)
+	call mkdir(s:dir_plug, 'p', 0700)
 	call plug#begin(s:dir_plug)
 
 	" vaffle.vim
@@ -255,7 +249,7 @@ if filereadable(s:file_plug) && executable('git')
 
 	" ctrlp.vim
 	Plug 'ctrlpvim/ctrlp.vim'
-	call s:mkdir(s:dir_ctrlp)
+	call mkdir(s:dir_ctrlp, 'p', 0700)
 	let g:ctrlp_map = '<Leader>p'
 	let g:ctrlp_cmd = 'CtrlPMRU'
 	let g:ctrlp_working_path_mode = 'a'

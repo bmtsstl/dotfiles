@@ -312,7 +312,7 @@ if filereadable(s:file_plug) && executable('git')
 			autocmd vimrc User lsp_setup call lsp#register_server({
 				\	'name': 'pyls',
 				\	'cmd': ['pyls'],
-				\	'whitelist': ['python'],
+				\	'allowlist': ['python'],
 				\	'workspace_config': {
 				\		'pyls': {
 				\			'plugins': {
@@ -342,7 +342,7 @@ if filereadable(s:file_plug) && executable('git')
 			autocmd vimrc User lsp_setup call lsp#register_server({
 				\	'name': 'gopls',
 				\	'cmd': ['gopls'],
-				\	'whitelist': ['go'],
+				\	'allowlist': ['go'],
 				\ })
 			autocmd vimrc FileType go call s:lsp_setup_buffer()
 		endif

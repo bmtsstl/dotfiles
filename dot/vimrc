@@ -293,8 +293,20 @@ if filereadable(s:file_plug) && executable('git')
 
 	" vim-quickhl
 	Plug 't9md/vim-quickhl'
-	nmap <Leader>: <Plug>(quickhl-manual-this-whole-word)
-	nmap <Leader>* <Plug>(quickhl-manual-reset)
+	function! s:quickhl() abort
+        let l:char_list = split(getline('.'), '\zs')
+        if len(l:char_list) <= 0
+            QuickhlManualReset
+            return
+        endif
+        let l:char = l:char_list[charcol('.') - 1]
+        if l:char ==# ' ' || l:char ==# '\t'
+            QuickhlManualReset
+            return
+        endif
+        call quickhl#manual#this_whole_word('n')
+	endfunction
+    execute 'nnoremap <silent> <Leader>: :<C-u>call <SNR>' .. s:SID() .. '_quickhl()<CR>'
 
 	" vim-toml
 	Plug 'cespare/vim-toml'

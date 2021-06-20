@@ -291,6 +291,11 @@ if filereadable(s:file_plug) && executable('git')
 	Plug 'ciaranm/detectindent'
 	autocmd vimrc BufRead * call s:execute_if_available('DetectIndent')
 
+	" vim-quickhl
+	Plug 't9md/vim-quickhl'
+	nmap <Leader>: <Plug>(quickhl-manual-this-whole-word)
+	nmap <Leader>* <Plug>(quickhl-manual-reset)
+
 	" vim-toml
 	Plug 'cespare/vim-toml'
 

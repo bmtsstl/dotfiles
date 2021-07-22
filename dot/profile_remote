@@ -1,5 +1,5 @@
 export EDITOR="vim"
 
-if [ -f "$HOME/.bash_profile_local" ]; then
-	source "$HOME/.bash_profile_local"
+if [ -f "$HOME/.profile_local" ]; then
+	source "$HOME/.profile_local"
 fi

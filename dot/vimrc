@@ -69,11 +69,7 @@ endif
 
 " backup
 call mkdir(s:dir_backup, 'p', 0700)
-if has('patch-8.1.0251')
-	call s:set_list_prepend('backupdir', s:dir_backup . '//')
-else
-	call s:set_list_prepend('backupdir', s:dir_backup)
-endif
+call s:set_list_prepend('backupdir', s:dir_backup . '//')
 set backup writebackup
 
 " swap

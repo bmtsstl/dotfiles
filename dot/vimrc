@@ -165,7 +165,6 @@ endif
 " misc
 filetype plugin indent on
 syntax enable
-set autochdir
 set autoread
 set background=dark
 set backspace=indent,eol,start

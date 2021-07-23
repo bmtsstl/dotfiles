@@ -282,10 +282,6 @@ if filereadable(s:file_plug) && executable('git')
 		autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
 	endif
 
-	" DetectIndent
-	Plug 'ciaranm/detectindent'
-	autocmd vimrc BufRead * call s:execute_if_available('DetectIndent')
-
 	" vim-quickhl
 	Plug 't9md/vim-quickhl'
 	function! s:quickhl() abort

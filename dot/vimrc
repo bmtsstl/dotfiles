@@ -7,7 +7,7 @@ scriptencoding utf-8
 
 " autocmd
 augroup vimrc
-	autocmd!
+    autocmd!
 augroup END
 
 " files & directories
@@ -27,33 +27,33 @@ let s:file_plug = s:dir_autoload . '/plug.vim'
 
 " function
 function! s:set_list_prepend(name, ...) abort
-	if !exists('&' . a:name)
-		throw 'unknown option: ' . a:name
-	endif
-	let l:list = eval('&' . a:name)
-	let l:list = split(l:list, '\\\@<!,')	" split with unescaped comma
+    if !exists('&' . a:name)
+        throw 'unknown option: ' . a:name
+    endif
+    let l:list = eval('&' . a:name)
+    let l:list = split(l:list, '\\\@<!,')    " split with unescaped comma
 
-	for l:i in range(a:0 - 1, 0, -1)
-		let l:value = a:000[l:i]
-		let l:value = escape(l:value, ',')
-		call filter(l:list, 'v:val !=# l:value')
-		call insert(l:list, l:value)
-	endfor
+    for l:i in range(a:0 - 1, 0, -1)
+        let l:value = a:000[l:i]
+        let l:value = escape(l:value, ',')
+        call filter(l:list, 'v:val !=# l:value')
+        call insert(l:list, l:value)
+    endfor
 
-	let l:list = join(l:list, ',')
-	execute 'let &' . a:name . ' = l:list'
+    let l:list = join(l:list, ',')
+    execute 'let &' . a:name . ' = l:list'
 endfunction
 
 function! s:SID() abort
-	return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+    return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
 endfun
 
 function! s:execute_if_available(command) abort
-	try
-		execute a:command
-	catch /^Vim\%((\a\+)\)\=:E464:/
-	catch /^Vim\%((\a\+)\)\=:E492:/
-	endtry
+    try
+        execute a:command
+    catch /^Vim\%((\a\+)\)\=:E464:/
+    catch /^Vim\%((\a\+)\)\=:E492:/
+    endtry
 endfunction
 
 " runtimepath
@@ -63,8 +63,8 @@ call s:set_list_prepend('runtimepath', s:dir_vim)
 
 " viminfo
 if has('viminfo')
-	call mkdir(fnamemodify(s:file_info, ':p:h'), 'p', 0700)
-	let &viminfo = "'100,<50,s10,h,n" . s:file_info
+    call mkdir(fnamemodify(s:file_info, ':p:h'), 'p', 0700)
+    let &viminfo = "'100,<50,s10,h,n" . s:file_info
 endif
 
 " backup
@@ -79,9 +79,9 @@ set swapfile
 
 " undo
 if has('persistent_undo')
-	call mkdir(s:dir_undo, 'p', 0700)
-	call s:set_list_prepend('undodir', s:dir_undo)
-	set undofile
+    call mkdir(s:dir_undo, 'p', 0700)
+    call s:set_list_prepend('undodir', s:dir_undo)
+    set undofile
 endif
 
 " gui
@@ -98,10 +98,10 @@ set guioptions-=F
 
 " font
 if has('gui_win32')
-	set guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
-	set guifont-=Consolas:h11 guifont^=Consolas:h11
-	set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
-	set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
+    set guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
+    set guifont-=Consolas:h11 guifont^=Consolas:h11
+    set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
+    set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
 endif
 
 " encoding & newline
@@ -129,18 +129,18 @@ set sidescrolloff=5
 
 " termguicolors
 if has('termguicolors')
-	if $TERM ==# 'tmux-256color' || $TERM ==# 'screen-256color'
-		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	endif
-	let &termguicolors = (&t_8f !=# '' && &t_8b !=# '') || has('vcon')
+    if $TERM ==# 'tmux-256color' || $TERM ==# 'screen-256color'
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+    let &termguicolors = (&t_8f !=# '' && &t_8b !=# '') || has('vcon')
 endif
 
 " cursor
 if &term !=# 'win32'
-	let &t_SI .= "\e[5 q"
-	let &t_SR .= "\e[3 q"
-	let &t_EI .= "\e[1 q"
+    let &t_SI .= "\e[5 q"
+    let &t_SR .= "\e[3 q"
+    let &t_EI .= "\e[1 q"
 endif
 set guicursor=a:block-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 set guicursor+=i-ci:ver10-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
@@ -159,7 +159,7 @@ set printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
 set printoptions+=header:2,syntax:n,number:y,wrap:y,duplex:off,collate:y
 set printoptions+=jobsplit:n,portrait:y,paper:A4,formfeed:n
 if has('win32')
-	set printfont=Consolas:h11
+    set printfont=Consolas:h11
 endif
 
 " misc
@@ -185,21 +185,21 @@ set wildmenu
 
 " maximize
 function! s:cmd_maximize() abort
-	let l:current_winnr = winnr()
-	let l:use_only = v:true
-	for l:winnr in range(1, winnr('$'))
-		let l:bufnr = winbufnr(l:winnr)
-		if l:winnr != l:current_winnr && (bufname(l:bufnr) !=# '' || getbufvar(l:bufnr, '&modified'))
-			let l:use_only = v:false
-			break
-		endif
-	endfor
+    let l:current_winnr = winnr()
+    let l:use_only = v:true
+    for l:winnr in range(1, winnr('$'))
+        let l:bufnr = winbufnr(l:winnr)
+        if l:winnr != l:current_winnr && (bufname(l:bufnr) !=# '' || getbufvar(l:bufnr, '&modified'))
+            let l:use_only = v:false
+            break
+        endif
+    endfor
 
-	if l:use_only
-		only
-		return
-	endif
-	execute "normal! \<C-w>T"
+    if l:use_only
+        only
+        return
+    endif
+    execute "normal! \<C-w>T"
 endfunction
 command! Maximize call s:cmd_maximize()
 
@@ -221,73 +221,73 @@ let g:vim_indent_cont = 4
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git') && executable('curl')
-	call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)
-	call system('curl -fLo "' . s:file_plug . '" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)
+    call system('curl -fLo "' . s:file_plug . '" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 endif
 
 if filereadable(s:file_plug) && executable('git')
-	call mkdir(s:dir_plug, 'p', 0700)
-	call plug#begin(s:dir_plug)
+    call mkdir(s:dir_plug, 'p', 0700)
+    call plug#begin(s:dir_plug)
 
-	" vaffle.vim
-	Plug 'cocopon/vaffle.vim'
-	let g:vaffle_force_delete = 1
-	let g:vaffle_show_hidden_files = 1
+    " vaffle.vim
+    Plug 'cocopon/vaffle.vim'
+    let g:vaffle_force_delete = 1
+    let g:vaffle_show_hidden_files = 1
 
-	" ctrlp.vim
-	Plug 'ctrlpvim/ctrlp.vim'
-	call mkdir(s:dir_ctrlp, 'p', 0700)
-	let g:ctrlp_map = '<Leader>p'
-	let g:ctrlp_cmd = 'CtrlPMRU'
-	let g:ctrlp_working_path_mode = 'a'
-	let g:ctrlp_cache_dir = s:dir_ctrlp
-	let g:ctrlp_show_hidden = 1
-	let g:ctrlp_follow_symlinks = 1
+    " ctrlp.vim
+    Plug 'ctrlpvim/ctrlp.vim'
+    call mkdir(s:dir_ctrlp, 'p', 0700)
+    let g:ctrlp_map = '<Leader>p'
+    let g:ctrlp_cmd = 'CtrlPMRU'
+    let g:ctrlp_working_path_mode = 'a'
+    let g:ctrlp_cache_dir = s:dir_ctrlp
+    let g:ctrlp_show_hidden = 1
+    let g:ctrlp_follow_symlinks = 1
 
-	" vim-quickrun
-	Plug 'thinca/vim-quickrun'
-	if has('terminal')
-		function! s:quickrun_terminal_open() abort
-			let l:term_list = term_list()
-			for l:winnr in range(1, winnr('$'))
-				let l:bufnr = winbufnr(l:winnr)
-				if index(l:term_list, l:bufnr) != -1 && bufname(l:bufnr) =~# '^quickrun: '
-					call win_gotoid(win_getid(l:winnr))
-					return
-				endif
-			endfor
+    " vim-quickrun
+    Plug 'thinca/vim-quickrun'
+    if has('terminal')
+        function! s:quickrun_terminal_open() abort
+            let l:term_list = term_list()
+            for l:winnr in range(1, winnr('$'))
+                let l:bufnr = winbufnr(l:winnr)
+                if index(l:term_list, l:bufnr) != -1 && bufname(l:bufnr) =~# '^quickrun: '
+                    call win_gotoid(win_getid(l:winnr))
+                    return
+                endif
+            endfor
 
-			if winwidth(0) * 2 < winheight(0) * 5
-				new
-			else
-				vnew
-			endif
-		endfunction
+            if winwidth(0) * 2 < winheight(0) * 5
+                new
+            else
+                vnew
+            endif
+        endfunction
 
-		let g:quickrun_config = get(g:, 'quickrun_config', {})
-		let g:quickrun_config['_'] = get(g:quickrun_config, '_', {})
-		let g:quickrun_config['_']['runner'] = 'terminal'
-		let g:quickrun_config['_']['runner/terminal/opener'] = 'call <SNR>' . s:SID() . '_quickrun_terminal_open()'
-	endif
+        let g:quickrun_config = get(g:, 'quickrun_config', {})
+        let g:quickrun_config['_'] = get(g:quickrun_config, '_', {})
+        let g:quickrun_config['_']['runner'] = 'terminal'
+        let g:quickrun_config['_']['runner/terminal/opener'] = 'call <SNR>' . s:SID() . '_quickrun_terminal_open()'
+    endif
 
-	" sudo.vim
-	if has('unix') && executable('sudo')
-		Plug 'vim-scripts/sudo.vim'
-	endif
+    " sudo.vim
+    if has('unix') && executable('sudo')
+        Plug 'vim-scripts/sudo.vim'
+    endif
 
-	" vim-better-whitespace
-	Plug 'ntpeters/vim-better-whitespace'
-	let g:better_whitespace_operator = ''
-	if exists('##TerminalOpen')
-		autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
-	endif
+    " vim-better-whitespace
+    Plug 'ntpeters/vim-better-whitespace'
+    let g:better_whitespace_operator = ''
+    if exists('##TerminalOpen')
+        autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
+    endif
 
-	" sleuth.vim
-	Plug 'tpope/vim-sleuth'
+    " sleuth.vim
+    Plug 'tpope/vim-sleuth'
 
-	" vim-quickhl
-	Plug 't9md/vim-quickhl'
-	function! s:quickhl() abort
+    " vim-quickhl
+    Plug 't9md/vim-quickhl'
+    function! s:quickhl() abort
         let l:char_list = split(getline('.'), '\zs')
         if len(l:char_list) <= 0
             QuickhlManualReset
@@ -299,100 +299,100 @@ if filereadable(s:file_plug) && executable('git')
             return
         endif
         call quickhl#manual#this_whole_word('n')
-	endfunction
+    endfunction
     execute 'nnoremap <silent> <Leader>: :<C-u>call <SNR>' .. s:SID() .. '_quickhl()<CR>'
 
-	" vim-toml
-	Plug 'cespare/vim-toml'
+    " vim-toml
+    Plug 'cespare/vim-toml'
 
-	" vim-lsp
-	if exists('*json_encode') && has('job') && has('timers') && has('lambda')
-		Plug 'prabirshrestha/vim-lsp'
-		let g:lsp_preview_doubletap = 0
-		let g:lsp_diagnostics_float_cursor = has('popupwin')
-		let g:lsp_document_highlight_enabled = 0
-		let g:lsp_signature_help_enabled = 0
+    " vim-lsp
+    if exists('*json_encode') && has('job') && has('timers') && has('lambda')
+        Plug 'prabirshrestha/vim-lsp'
+        let g:lsp_preview_doubletap = 0
+        let g:lsp_diagnostics_float_cursor = has('popupwin')
+        let g:lsp_document_highlight_enabled = 0
+        let g:lsp_signature_help_enabled = 0
 
-		if executable('pyls')
-			autocmd vimrc User lsp_setup call lsp#register_server({
-				\	'name': 'pyls',
-				\	'cmd': ['pyls'],
-				\	'allowlist': ['python'],
-				\	'workspace_config': {
-				\		'pyls': {
-				\			'plugins': {
-				\				'autopep8': {'enabled': v:false},
-				\				'jedi_completion': {'enabled': v:true},
-				\				'jedi_definition': {'enabled': v:true},
-				\				'jedi_hover': {'enabled': v:true},
-				\				'jedi_references': {'enabled': v:true},
-				\				'jedi_signature_help': {'enabled': v:true},
-				\				'jedi_symbols': {'enabled': v:true},
-				\				'mccabe': {'enabled': v:true},
-				\				'pycodestyle': {'enabled': v:false},
-				\				'pydocstyle': {'enabled': v:false},
-				\				'pyflakes': {'enabled': v:true},
-				\				'pylint': {'enabled': v:false},
-				\				'rope_completion': {'enabled': v:true},
-				\				'rope_rename': {'enabled': v:true},
-				\				'yapf': {'enabled': v:true},
-				\			}
-				\		}
-				\	},
-				\ })
+        if executable('pyls')
+            autocmd vimrc User lsp_setup call lsp#register_server({
+                \    'name': 'pyls',
+                \    'cmd': ['pyls'],
+                \    'allowlist': ['python'],
+                \    'workspace_config': {
+                \        'pyls': {
+                \            'plugins': {
+                \                'autopep8': {'enabled': v:false},
+                \                'jedi_completion': {'enabled': v:true},
+                \                'jedi_definition': {'enabled': v:true},
+                \                'jedi_hover': {'enabled': v:true},
+                \                'jedi_references': {'enabled': v:true},
+                \                'jedi_signature_help': {'enabled': v:true},
+                \                'jedi_symbols': {'enabled': v:true},
+                \                'mccabe': {'enabled': v:true},
+                \                'pycodestyle': {'enabled': v:false},
+                \                'pydocstyle': {'enabled': v:false},
+                \                'pyflakes': {'enabled': v:true},
+                \                'pylint': {'enabled': v:false},
+                \                'rope_completion': {'enabled': v:true},
+                \                'rope_rename': {'enabled': v:true},
+                \                'yapf': {'enabled': v:true},
+                \            }
+                \        }
+                \    },
+                \ })
 
-			function! s:lsp_setup_python() abort
-				setlocal omnifunc=lsp#complete
-				nmap <buffer> gd <Plug>(lsp-definition)
-				nmap <buffer> <Leader>f <Plug>(lsp-document-format)
-			endfunction
-			autocmd vimrc FileType python call s:lsp_setup_python()
-		endif
+            function! s:lsp_setup_python() abort
+                setlocal omnifunc=lsp#complete
+                nmap <buffer> gd <Plug>(lsp-definition)
+                nmap <buffer> <Leader>f <Plug>(lsp-document-format)
+            endfunction
+            autocmd vimrc FileType python call s:lsp_setup_python()
+        endif
 
-		if executable('gopls')
-			autocmd vimrc User lsp_setup call lsp#register_server({
-				\	'name': 'gopls',
-				\	'cmd': ['gopls'],
-				\	'allowlist': ['go'],
-				\ })
+        if executable('gopls')
+            autocmd vimrc User lsp_setup call lsp#register_server({
+                \    'name': 'gopls',
+                \    'cmd': ['gopls'],
+                \    'allowlist': ['go'],
+                \ })
 
-			function! s:lsp_format_go() abort
-				LspCodeActionSync source.organizeImports
-				LspDocumentFormatSync
-			endfunction
-			function! s:lsp_setup_go() abort
-				setlocal omnifunc=lsp#complete
-				nmap <buffer> gd <Plug>(lsp-definition)
-				execute "nmap <buffer> <Leader>f :<C-u>call <SNR>" .. s:SID() .. "_lsp_format_go()<CR>"
-			endfunction
-			autocmd vimrc FileType go call s:lsp_setup_go()
-		endif
-	endif
+            function! s:lsp_format_go() abort
+                LspCodeActionSync source.organizeImports
+                LspDocumentFormatSync
+            endfunction
+            function! s:lsp_setup_go() abort
+                setlocal omnifunc=lsp#complete
+                nmap <buffer> gd <Plug>(lsp-definition)
+                execute "nmap <buffer> <Leader>f :<C-u>call <SNR>" .. s:SID() .. "_lsp_format_go()<CR>"
+            endfunction
+            autocmd vimrc FileType go call s:lsp_setup_go()
+        endif
+    endif
 
-	" colorscheme
-	if has('gui_running') || &termguicolors || &t_Co >= 256
-		Plug 'cocopon/iceberg.vim'
-		Plug 'cormacrelf/vim-colors-github'
+    " colorscheme
+    if has('gui_running') || &termguicolors || &t_Co >= 256
+        Plug 'cocopon/iceberg.vim'
+        Plug 'cormacrelf/vim-colors-github'
 
-		function! s:load_colorscheme_if_available(name) abort
-			try
-				execute 'colorscheme ' . a:name
-			catch /^Vim\%((\a\+)\)\=:E185:/
-			endtry
-		endfunction
-		autocmd vimrc User vimrc_plug_end ++nested call s:load_colorscheme_if_available('iceberg')
-	endif
+        function! s:load_colorscheme_if_available(name) abort
+            try
+                execute 'colorscheme ' . a:name
+            catch /^Vim\%((\a\+)\)\=:E185:/
+            endtry
+        endfunction
+        autocmd vimrc User vimrc_plug_end ++nested call s:load_colorscheme_if_available('iceberg')
+    endif
 
-	" vimdoc-ja
-	Plug 'vim-jp/vimdoc-ja'
-	set helplang^=ja
+    " vimdoc-ja
+    Plug 'vim-jp/vimdoc-ja'
+    set helplang^=ja
 
-	call plug#end()
-	autocmd vimrc User vimrc_plug_end silent " at least one autocommand should be registered
-	doautocmd vimrc User vimrc_plug_end
+    call plug#end()
+    autocmd vimrc User vimrc_plug_end silent " at least one autocommand should be registered
+    doautocmd vimrc User vimrc_plug_end
 endif
 
 " ----- local -----------------------------------
 if filereadable(s:file_local)
-	source `=s:file_local`
+    source `=s:file_local`
 endif

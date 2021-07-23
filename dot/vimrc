@@ -282,6 +282,9 @@ if filereadable(s:file_plug) && executable('git')
 		autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
 	endif
 
+	" sleuth.vim
+	Plug 'tpope/vim-sleuth'
+
 	" vim-quickhl
 	Plug 't9md/vim-quickhl'
 	function! s:quickhl() abort

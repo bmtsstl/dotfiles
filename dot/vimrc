@@ -323,6 +323,7 @@ if filereadable(s:file_plug) && executable('git')
                 \    'workspace_config': {
                 \        'pylsp': {
                 \            'plugins': {
+                \                'autopep8': {'enabled': v:false},
                 \                'flake8': {'enabled': v:false},
                 \                'jedi_completion': {'enabled': v:true},
                 \                'jedi_definition': {'enabled': v:true},

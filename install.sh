@@ -2,7 +2,7 @@
 set -eu
 
 DOTFILES="${HOME}/.dotfiles"
-GIT_REPOSITORY='https://github.com/bmtsstl/dotfiles.git'
+GIT_REPOSITORY='https://bmtsstl@github.com/bmtsstl/dotfiles.git'
 
 if ! which git >/dev/null; then
 	echo 'git is not installed or not in the $PATH' >&2

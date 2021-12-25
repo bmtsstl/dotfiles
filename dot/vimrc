@@ -368,6 +368,12 @@ if filereadable(s:file_plug) && executable('git')
             endfunction
             autocmd vimrc FileType go call s:lsp_setup_go()
         endif
+
+        if executable('efm-langserver')
+            Plug 'tsuyoshicho/vim-efm-langserver-settings'
+            let g:efm_langserver_settings#customlist = v:true
+            let g:efm_langserver_settings#filetype_whitelist = ['javascript']
+        endif
     endif
 
     " colorscheme

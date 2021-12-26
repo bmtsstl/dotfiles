@@ -304,6 +304,49 @@ if filereadable(s:file_plug) && executable('git')
     endfunction
     execute 'nnoremap <silent> <Leader>: :<C-u>call <SNR>' .. s:SID() .. '_quickhl()<CR>'
 
+    " ALE
+    Plug 'dense-analysis/ale'
+    let g:ale_cursor_detail = has('popupwin')
+    let g:ale_echo_cursor = v:false
+    let g:ale_fixers = {
+        \   'go': ['gofmt'],
+        \   'javascript': ['prettier'],
+        \   'python': ['yapf'],
+        \ }
+    let g:ale_floating_preview = v:true
+    let g:ale_history_enabled = v:false
+    let g:ale_hover_cursor = v:false
+    let g:ale_linters = {
+        \   'go': ['gopls'],
+        \   'javascript': ['eslint'],
+        \   'python': ['pylsp'],
+        \ }
+    let g:ale_linters_explicit = v:true
+    let g:ale_lsp_suggestions = v:true
+    let g:ale_python_pylsp_config = {
+        \   'pylsp': {
+        \       'plugins': {
+        \           'autopep8': {'enabled': v:false},
+        \           'flake8': {'enabled': v:false},
+        \           'jedi_completion': {'enabled': v:true},
+        \           'jedi_definition': {'enabled': v:true},
+        \           'jedi_hover': {'enabled': v:true},
+        \           'jedi_references': {'enabled': v:true},
+        \           'jedi_signature_help': {'enabled': v:true},
+        \           'jedi_symbols': {'enabled': v:true},
+        \           'mccabe': {'enabled': v:true},
+        \           'preload': {'enabled': v:true},
+        \           'pycodestyle': {'enabled': v:false},
+        \           'pydocstyle': {'enabled': v:false},
+        \           'pyflakes': {'enabled': v:true},
+        \           'pylint': {'enabled': v:false},
+        \           'rope_completion': {'enabled': v:true},
+        \           'yapf': {'enabled': v:true},
+        \       }
+        \   }
+        \ }
+    nmap <Leader>f <Plug>(ale_fix)
+    nmap gd <Plug>(ale_go_to_definition)
 
     " colorscheme
     if has('gui_running') || &termguicolors || &t_Co >= 256

@@ -348,6 +348,7 @@ if filereadable(s:file_plug) && executable('git')
         \ }
     nmap <Leader>f <Plug>(ale_fix)
     nmap gd <Plug>(ale_go_to_definition)
+    set omnifunc=ale#completion#OmniFunc
 
     " colorscheme
     if has('gui_running') || &termguicolors || &t_Co >= 256

@@ -312,7 +312,7 @@ if filereadable(s:file_plug) && executable('git')
         \   'go': ['gofmt'],
         \   'javascript': ['prettier'],
         \   'json': ['prettier'],
-        \   'python': ['yapf'],
+        \   'python': ['black'],
         \ }
     let g:ale_floating_preview = v:true
     let g:ale_history_enabled = v:false
@@ -342,7 +342,7 @@ if filereadable(s:file_plug) && executable('git')
         \           'pyflakes': {'enabled': v:true},
         \           'pylint': {'enabled': v:false},
         \           'rope_completion': {'enabled': v:true},
-        \           'yapf': {'enabled': v:true},
+        \           'yapf': {'enabled': v:false},
         \       }
         \   }
         \ }

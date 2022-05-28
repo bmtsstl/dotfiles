@@ -324,6 +324,7 @@ if filereadable(s:file_plug) && executable('git')
         \ }
     let g:ale_linters_explicit = v:true
     let g:ale_lsp_suggestions = v:true
+    let g:ale_popup_menu_enabled = v:false
     let g:ale_python_pylsp_config = {
         \   'pylsp': {
         \       'plugins': {
@@ -346,6 +347,7 @@ if filereadable(s:file_plug) && executable('git')
         \       }
         \   }
         \ }
+    let g:ale_set_balloons = v:false
     nmap <Leader>f <Plug>(ale_fix)
     nmap gd <Plug>(ale_go_to_definition)
     set omnifunc=ale#completion#OmniFunc

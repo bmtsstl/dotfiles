@@ -220,6 +220,9 @@ nnoremap <silent> <Leader>c :<C-u>cd %:h<CR>
 " vim
 let g:vim_indent_cont = 4
 
+" man
+runtime ftplugin/man.vim
+
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git') && executable('curl')
     call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)

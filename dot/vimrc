@@ -162,6 +162,12 @@ if has('win32')
     set printfont=Consolas:h11
 endif
 
+" colorscheme
+try
+    colorscheme habamax
+catch /^Vim\%((\a\+)\)\=:E185:/
+endtry
+
 " misc
 filetype plugin indent on
 syntax enable
@@ -355,20 +361,6 @@ if filereadable(s:file_plug) && executable('git')
     nmap <Leader>f <Plug>(ale_fix)
     nmap gd <Plug>(ale_go_to_definition)
     set omnifunc=ale#completion#OmniFunc
-
-    " colorscheme
-    if has('gui_running') || &termguicolors || &t_Co >= 256
-        Plug 'cocopon/iceberg.vim'
-        Plug 'cormacrelf/vim-colors-github'
-
-        function! s:load_colorscheme_if_available(name) abort
-            try
-                execute 'colorscheme ' . a:name
-            catch /^Vim\%((\a\+)\)\=:E185:/
-            endtry
-        endfunction
-        autocmd vimrc User vimrc_plug_end ++nested call s:load_colorscheme_if_available('iceberg')
-    endif
 
     " vimdoc-ja
     Plug 'vim-jp/vimdoc-ja'

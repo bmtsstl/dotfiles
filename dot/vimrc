@@ -318,6 +318,7 @@ if filereadable(s:file_plug) && executable('git')
     let g:ale_cursor_detail = has('popupwin')
     let g:ale_echo_cursor = v:false
     let g:ale_fixers = {
+        \   'c': ['clang-format'],
         \   'go': ['gofmt'],
         \   'javascript': ['prettier'],
         \   'json': ['prettier'],
@@ -327,6 +328,7 @@ if filereadable(s:file_plug) && executable('git')
     let g:ale_history_enabled = v:false
     let g:ale_hover_cursor = v:false
     let g:ale_linters = {
+        \   'c': ['clangd'],
         \   'go': ['gopls'],
         \   'javascript': ['eslint'],
         \   'python': ['pylsp'],

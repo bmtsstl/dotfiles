@@ -341,7 +341,7 @@ if filereadable(s:file_plug) && executable('git')
         \   'pylsp': {
         \       'plugins': {
         \           'autopep8': {'enabled': v:false},
-        \           'flake8': {'enabled': v:true},
+        \           'flake8': {'enabled': v:false},
         \           'jedi_completion': {'enabled': v:true},
         \           'jedi_definition': {'enabled': v:true},
         \           'jedi_hover': {'enabled': v:true},
@@ -352,7 +352,7 @@ if filereadable(s:file_plug) && executable('git')
         \           'preload': {'enabled': v:true},
         \           'pycodestyle': {'enabled': v:false},
         \           'pydocstyle': {'enabled': v:false},
-        \           'pyflakes': {'enabled': v:false},
+        \           'pyflakes': {'enabled': v:true},
         \           'pylint': {'enabled': v:false},
         \           'rope_completion': {'enabled': v:true},
         \           'yapf': {'enabled': v:false},

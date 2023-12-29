@@ -364,8 +364,8 @@ if filereadable(s:file_plug) && executable('git')
     nmap <Leader>f <Plug>(ale_fix)
     nmap gd <Plug>(ale_go_to_definition)
     set omnifunc=ale#completion#OmniFunc
-    autocmd vimrc User ALEFixPre redraw | unsilent echowindow "ALEFix running ..."
-    autocmd vimrc User ALEFixPost redraw | unsilent echowindow "ALEFix done"
+    autocmd vimrc User ALEFixPre redraw | unsilent echo "ALEFix running ..."
+    autocmd vimrc User ALEFixPost redraw | unsilent echo "ALEFix done"
 
     " vimdoc-ja
     Plug 'vim-jp/vimdoc-ja'

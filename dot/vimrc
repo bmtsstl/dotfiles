@@ -354,6 +354,7 @@ if filereadable(s:file_plug) && executable('git')
         \           'pydocstyle': {'enabled': v:false},
         \           'pyflakes': {'enabled': v:true},
         \           'pylint': {'enabled': v:false},
+        \           'pylsp_mypy': {'enabled': v:true, 'live_mode': v:false, 'dmypy': v:true},
         \           'rope_completion': {'enabled': v:true},
         \           'yapf': {'enabled': v:false},
         \       }

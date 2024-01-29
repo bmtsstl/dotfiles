@@ -331,12 +331,13 @@ if filereadable(s:file_plug) && executable('git')
         \   'c': ['clangd'],
         \   'go': ['gopls'],
         \   'javascript': ['eslint'],
-        \   'python': ['pylsp'],
+        \   'python': ['pylsp', 'mypy'],
         \ }
     let g:ale_linters_explicit = v:true
     let g:ale_lsp_suggestions = v:true
     let g:ale_popup_menu_enabled = v:false
     let g:ale_python_black_options = '--fast'
+    let g:ale_python_mypy_ignore_invalid_syntax = v:true
     let g:ale_python_pylsp_config = {
         \   'pylsp': {
         \       'plugins': {
@@ -354,6 +355,7 @@ if filereadable(s:file_plug) && executable('git')
         \           'pydocstyle': {'enabled': v:false},
         \           'pyflakes': {'enabled': v:true},
         \           'pylint': {'enabled': v:false},
+        \           'pylsp_mypy': {'enabled': v:false},
         \           'rope_completion': {'enabled': v:true},
         \           'yapf': {'enabled': v:false},
         \       }

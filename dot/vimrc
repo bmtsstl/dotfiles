@@ -185,6 +185,7 @@ set number
 set pumheight=10
 set renderoptions=type:directx,renmode:5
 set ruler
+set updatetime=100
 set wildmenu
 
 " ----- commands --------------------------------
@@ -312,6 +313,9 @@ if filereadable(s:file_plug) && executable('git')
         call quickhl#manual#this_whole_word('n')
     endfunction
     execute 'nnoremap <silent> <Leader>: :<C-u>call <SNR>' .. s:SID() .. '_quickhl()<CR>'
+
+    " vim-signify
+    Plug 'mhinz/vim-signify'
 
     " ALE
     Plug 'dense-analysis/ale'

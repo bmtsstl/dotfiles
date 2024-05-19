@@ -322,8 +322,6 @@ if filereadable(s:file_plug) && executable('git')
     set helplang^=ja
 
     call plug#end()
-    autocmd vimrc User vimrc_plug_end silent " at least one autocommand should be registered
-    doautocmd vimrc User vimrc_plug_end
 endif
 
 " ----- local -----------------------------------

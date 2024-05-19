@@ -317,62 +317,6 @@ if filereadable(s:file_plug) && executable('git')
     " vim-signify
     Plug 'mhinz/vim-signify'
 
-    " ALE
-    Plug 'dense-analysis/ale'
-    let g:ale_cursor_detail = has('popupwin')
-    let g:ale_echo_cursor = v:false
-    let g:ale_fixers = {
-        \   'c': ['clang-format'],
-        \   'go': ['gofmt'],
-        \   'javascript': ['prettier'],
-        \   'json': ['prettier'],
-        \   'python': ['ruff', 'ruff_format'],
-        \ }
-    let g:ale_floating_preview = v:true
-    let g:ale_history_enabled = v:false
-    let g:ale_hover_cursor = v:false
-    let g:ale_linters = {
-        \   'c': ['clangd'],
-        \   'go': ['gopls'],
-        \   'javascript': ['eslint'],
-        \   'python': ['ruff', 'pyright'],
-        \ }
-    let g:ale_linters_explicit = v:true
-    let g:ale_lsp_suggestions = v:true
-    let g:ale_popup_menu_enabled = v:false
-    let g:ale_python_black_options = '--fast'
-    let g:ale_python_mypy_ignore_invalid_syntax = v:true
-    let g:ale_python_pylsp_config = {
-        \   'pylsp': {
-        \       'plugins': {
-        \           'autopep8': {'enabled': v:false},
-        \           'flake8': {'enabled': v:false},
-        \           'jedi_completion': {'enabled': v:true},
-        \           'jedi_definition': {'enabled': v:true},
-        \           'jedi_hover': {'enabled': v:true},
-        \           'jedi_references': {'enabled': v:true},
-        \           'jedi_signature_help': {'enabled': v:true},
-        \           'jedi_symbols': {'enabled': v:true},
-        \           'mccabe': {'enabled': v:false},
-        \           'preload': {'enabled': v:true},
-        \           'pycodestyle': {'enabled': v:false},
-        \           'pydocstyle': {'enabled': v:false},
-        \           'pyflakes': {'enabled': v:true},
-        \           'pylint': {'enabled': v:false},
-        \           'pylsp_mypy': {'enabled': v:false},
-        \           'rope_completion': {'enabled': v:true},
-        \           'yapf': {'enabled': v:false},
-        \       }
-        \   }
-        \ }
-    let g:ale_set_balloons = v:false
-    let g:ale_virtualtext_cursor = 'disabled'
-    nmap <Leader>f <Plug>(ale_fix)
-    nmap gd <Plug>(ale_go_to_definition)
-    set omnifunc=ale#completion#OmniFunc
-    autocmd vimrc User ALEFixPre redraw | unsilent echo "ALEFix running ..."
-    autocmd vimrc User ALEFixPost redraw | unsilent echo "ALEFix done"
-
     " vimdoc-ja
     Plug 'vim-jp/vimdoc-ja'
     set helplang^=ja

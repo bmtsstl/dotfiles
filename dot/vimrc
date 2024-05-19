@@ -316,6 +316,66 @@ if filereadable(s:file_plug) && executable('git')
 
     " vim-signify
     Plug 'mhinz/vim-signify'
+    let g:signify_priority = 0
+
+    " lsp
+    Plug 'yegappan/lsp'
+
+    function! s:lsp_setup() abort
+        let l:gopls = exepath('gopls')
+        if !empty(l:gopls)
+            call LspAddServer([
+                \   {
+                \       'name': 'gopls',
+                \       'path': l:gopls,
+                \       'args': ['serve'],
+                \       'filetype': ['go', 'gomod', 'gohtmltmpl', 'gotexttmpl'],
+                \       'rootSearch': ['go.mod', '.git/'],
+                \   }
+                \ ])
+        endif
+
+        let l:ruff_lsp = exepath('ruff-lsp')
+        if !empty(l:ruff_lsp)
+            call LspAddServer([
+                \   {
+                \       'name': 'ruff-lsp',
+                \       'path': l:ruff_lsp,
+                \       'filetype': 'python',
+                \       'rootSearch': ['ruff.toml', '.ruff.toml', 'pyproject.toml', '.git/'],
+                \   }
+                \ ])
+        endif
+
+        let l:pyright_langserver = exepath('pyright-langserver')
+        if !empty(l:pyright_langserver)
+            call LspAddServer([
+                \   {
+                \       'name': 'pyright',
+                \       'path': l:pyright_langserver,
+                \       'args': ['--stdio'],
+                \       'filetype': 'python',
+                \       'workspaceConfig': {
+                \           'python': {
+                \               'analysis': {
+                \                   'autoImportCompletions': v:false,
+                \               },
+                \           },
+                \       },
+                \       'rootSearch': ['pyrightconfig.json', 'pyproject.toml', '.git/'],
+                \   }
+                \ ])
+        endif
+    endfunction
+    autocmd User LspSetup call s:lsp_setup()
+
+    function! s:lsp_attached() abort
+        setlocal keywordprg=:LspHover
+        nnoremap <buffer> gd <Cmd>execute v:count .. 'LspGotoDefinition'<CR>
+        nnoremap <buffer><silent> <Leader>f :LspFormat<CR>
+        autocmd vimrc CursorMoved <buffer> silent! LspDiag! current
+    endfunction
+    autocmd User LspAttached call s:lsp_attached()
 
     " vimdoc-ja
     Plug 'vim-jp/vimdoc-ja'

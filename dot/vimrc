@@ -326,7 +326,7 @@ if filereadable(s:file_plug) && executable('git')
         \   'go': ['gofmt'],
         \   'javascript': ['prettier'],
         \   'json': ['prettier'],
-        \   'python': ['black'],
+        \   'python': ['ruff', 'ruff_format'],
         \ }
     let g:ale_floating_preview = v:true
     let g:ale_history_enabled = v:false
@@ -335,7 +335,7 @@ if filereadable(s:file_plug) && executable('git')
         \   'c': ['clangd'],
         \   'go': ['gopls'],
         \   'javascript': ['eslint'],
-        \   'python': ['pylsp', 'mypy'],
+        \   'python': ['ruff', 'pyright'],
         \ }
     let g:ale_linters_explicit = v:true
     let g:ale_lsp_suggestions = v:true

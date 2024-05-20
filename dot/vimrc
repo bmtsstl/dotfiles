@@ -343,6 +343,7 @@ if filereadable(s:file_plug) && executable('git')
                 \       'path': l:ruff_lsp,
                 \       'filetype': 'python',
                 \       'rootSearch': ['ruff.toml', '.ruff.toml', 'pyproject.toml', '.git/'],
+                \       'features': {'hover': v:false},
                 \   }
                 \ ])
         endif

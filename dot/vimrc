@@ -374,7 +374,11 @@ if filereadable(s:file_plug) && executable('git')
         setlocal keywordprg=:LspHover
         nnoremap <buffer> gd <Cmd>execute v:count .. 'LspGotoDefinition'<CR>
         nnoremap <buffer><silent> <Leader>f :LspFormat<CR>
-        autocmd vimrc CursorMoved <buffer> silent! LspDiag! current
+
+        augroup vimrc_lsp_buffer
+            autocmd! * <buffer>
+            autocmd CursorMoved <buffer> silent! LspDiag! current
+        augroup END
     endfunction
     autocmd User LspAttached call s:lsp_attached()
 

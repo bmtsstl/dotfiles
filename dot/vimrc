@@ -322,6 +322,11 @@ if filereadable(s:file_plug) && executable('git')
     Plug 'yegappan/lsp'
 
     function! s:lsp_setup() abort
+        call LspOptionsSet({
+            \   'autoComplete': v:false,
+            \   'showSignature': v:false,
+            \ })
+
         let l:gopls = exepath('gopls')
         if !empty(l:gopls)
             call LspAddServer([
@@ -331,6 +336,7 @@ if filereadable(s:file_plug) && executable('git')
                 \       'args': ['serve'],
                 \       'filetype': ['go', 'gomod', 'gohtmltmpl', 'gotexttmpl'],
                 \       'rootSearch': ['go.mod', '.git/'],
+                \       'syncInit': v:true,
                 \   }
                 \ ])
         endif
@@ -344,6 +350,7 @@ if filereadable(s:file_plug) && executable('git')
                 \       'filetype': 'python',
                 \       'rootSearch': ['ruff.toml', '.ruff.toml', 'pyproject.toml', '.git/'],
                 \       'features': {'hover': v:false},
+                \       'syncInit': v:true,
                 \   }
                 \ ])
         endif
@@ -364,6 +371,7 @@ if filereadable(s:file_plug) && executable('git')
                 \           },
                 \       },
                 \       'rootSearch': ['pyrightconfig.json', 'pyproject.toml', '.git/'],
+                \       'syncInit': v:true,
                 \   }
                 \ ])
         endif

@@ -287,13 +287,6 @@ if filereadable(s:file_plug) && executable('git')
         Plug 'vim-scripts/sudo.vim'
     endif
 
-    " vim-better-whitespace
-    Plug 'ntpeters/vim-better-whitespace'
-    let g:better_whitespace_operator = ''
-    if exists('##TerminalOpen')
-        autocmd vimrc TerminalOpen * call s:execute_if_available('DisableWhitespace')
-    endif
-
     " sleuth.vim
     Plug 'tpope/vim-sleuth'
 

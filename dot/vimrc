@@ -230,6 +230,46 @@ let g:vim_indent_cont = 4
 " man
 runtime ftplugin/man.vim
 
+" ----- highlight extra whitespace --------------
+
+" vim-better-whitespace plugin redefines match highlights every time CursorMovedI fires,
+" causing a noticeable delay between pressing a key and seeing the character appear on
+" the screen. Other plugins are either unpopular or highlight trailing whitespace in
+" insert mode, which can be disruptive.
+
+function! s:extra_whitespace_setup() abort
+    if !exists('w:vimrc_extra_whitespace_match_id')
+        let w:vimrc_extra_whitespace_match_id = -1
+    endif
+endfunction
+
+function! s:extra_whitespace_show() abort
+    call s:extra_whitespace_setup()
+    if w:vimrc_extra_whitespace_match_id ==# -1
+        let w:vimrc_extra_whitespace_match_id = matchadd('Error', '[ \t]\+$', -10 )
+    endif
+endfunction
+
+function! s:extra_whitespace_hide() abort
+    call s:extra_whitespace_setup()
+    if w:vimrc_extra_whitespace_match_id !=# -1
+        call matchdelete(w:vimrc_extra_whitespace_match_id)
+        let w:vimrc_extra_whitespace_match_id = -1
+    endif
+endfunction
+
+function! s:extra_whitespace_update() abort
+    if &l:modifiable && mode() !=# 'i'
+        call s:extra_whitespace_show()
+    else
+        call s:extra_whitespace_hide()
+    endif
+endfunction
+
+autocmd vimrc WinNew,BufWinEnter *          call s:extra_whitespace_update()
+autocmd vimrc OptionSet          modifiable call s:extra_whitespace_update()
+autocmd vimrc ModeChanged        *:i*,i*:*  call s:extra_whitespace_update()
+
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git') && executable('curl')
     call mkdir(fnamemodify(s:file_plug, ':p:h'), 'p', 0700)

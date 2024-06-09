@@ -266,9 +266,11 @@ function! s:extra_whitespace_update() abort
     endif
 endfunction
 
-autocmd vimrc WinNew,BufWinEnter *          call s:extra_whitespace_update()
-autocmd vimrc OptionSet          modifiable call s:extra_whitespace_update()
-autocmd vimrc ModeChanged        *:i*,i*:*  call s:extra_whitespace_update()
+autocmd vimrc WinNew            *           call s:extra_whitespace_update()
+autocmd vimrc BufWinEnter       *           call s:extra_whitespace_update()
+autocmd vimrc TerminalWinOpen   *           call s:extra_whitespace_update()
+autocmd vimrc OptionSet         modifiable  call s:extra_whitespace_update()
+autocmd vimrc ModeChanged       *:i*,i*:*   call s:extra_whitespace_update()
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git') && executable('curl')

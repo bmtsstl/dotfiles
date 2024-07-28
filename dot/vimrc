@@ -162,12 +162,6 @@ if has('win32')
     set printfont=Consolas:h11
 endif
 
-" colorscheme
-try
-    colorscheme habamax
-catch /^Vim\%((\a\+)\)\=:E185:/
-endtry
-
 " misc
 filetype plugin indent on
 syntax enable
@@ -425,11 +419,26 @@ if filereadable(s:file_plug) && executable('git')
     endfunction
     autocmd User LspAttached call s:lsp_attached()
 
+    " vim-code-dark
+    Plug 'tomasiser/vim-code-dark'
+
+    function! s:set_colorscheme() abort
+        try
+            colorscheme codedark
+        catch /^Vim\%((\a\+)\)\=:E185:/
+        endtry
+    endfunction
+    autocmd vimrc User VimRCPlugEnd call s:set_colorscheme()
+
     " vimdoc-ja
     Plug 'vim-jp/vimdoc-ja'
     set helplang^=ja
 
     call plug#end()
+endif
+
+if exists('#User#VimRCPlugEnd')
+    doautocmd vimrc User VimRCPlugEnd
 endif
 
 " ----- local -----------------------------------

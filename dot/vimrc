@@ -173,7 +173,7 @@ set cursorline
 set display+=lastline
 set hidden
 set laststatus=2
-set lazyredraw
+set nolazyredraw
 set nomodeline
 set number
 set pumheight=10

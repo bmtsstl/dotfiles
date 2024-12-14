@@ -240,7 +240,7 @@ endfunction
 function! s:extra_whitespace_show() abort
     call s:extra_whitespace_setup()
     if w:vimrc_extra_whitespace_match_id ==# -1
-        let w:vimrc_extra_whitespace_match_id = matchadd('Error', '[ \t]\+$', -10 )
+        let w:vimrc_extra_whitespace_match_id = matchadd('DiffDelete', '[ \t]\+$', -10 )
     endif
 endfunction
 

@@ -146,6 +146,10 @@ set guicursor=a:block-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 set guicursor+=i-ci:ver10-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 set guicursor+=r-cr:hor5-blinkwait1000-blinkon500-blinkoff500-Cursor/lCursor
 
+" number
+set number
+autocmd vimrc TerminalWinOpen * setlocal nonumber
+
 " IM
 autocmd vimrc InsertLeave * set iminsert=0 imsearch=0
 autocmd vimrc CmdlineLeave * set iminsert=0 imsearch=0
@@ -175,7 +179,6 @@ set hidden
 set laststatus=2
 set nolazyredraw
 set nomodeline
-set number
 set pumheight=10
 set renderoptions=type:directx,renmode:5
 set ruler

@@ -207,6 +207,17 @@ function! s:cmd_maximize() abort
 endfunction
 command! Maximize call s:cmd_maximize()
 
+" osc52
+function! s:cmd_osc52(line1, line2) abort
+    let l:bufnr = bufnr()
+    let l:pos1 = [l:bufnr, a:line1, 1, 0]
+    let l:pos2 = [l:bufnr, a:line2, 1, 0]
+    let l:text = getregion(l:pos1, l:pos2, {"type": "V"}) + [""]
+    let l:seq = "\e]52;;" .. base64_encode(str2blob(l:text)) .. "\x07"
+    call echoraw(l:seq)
+endfunction
+command! -range=% OSC52 call s:cmd_osc52(<line1>, <line2>)
+
 " ----- mappings --------------------------------
 
 let g:mapleader = "\<Space>"

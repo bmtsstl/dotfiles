@@ -419,6 +419,19 @@ if filereadable(s:file_plug) && executable('git')
                 \   }
                 \ ])
         endif
+
+        let l:clangd = exepath('clangd')
+        if !empty(l:clangd)
+            call LspAddServer([
+                \   {
+                \       'name': 'clangd',
+                \       'path': l:clangd,
+                \       'filetype': ['c', 'cpp'],
+                \       'rootSearch': ['GNUmakefile', 'makefile', 'Makefile', '.git/'],
+                \       'syncInit': v:true,
+                \   }
+                \ ])
+        endif
     endfunction
     autocmd User LspSetup call s:lsp_setup()
 

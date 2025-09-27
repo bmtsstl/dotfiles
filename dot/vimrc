@@ -158,6 +158,10 @@ autocmd vimrc CmdlineLeave * set iminsert=0 imsearch=0
 set notimeout
 set ttimeout
 
+" tags
+" A trailing ";" indicates an upward search. Refer to :h file-searching for details.
+set tags+=./tags;
+
 " hardcopy
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
 set printoptions+=header:2,syntax:n,number:y,wrap:y,duplex:off,collate:y

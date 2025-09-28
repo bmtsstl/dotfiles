@@ -23,6 +23,7 @@ let s:file_info    = s:dir_vim . '/viminfo'
 let s:file_local   = s:dir_vim . '/vimrc.local'
 
 let s:dir_ctrlp = s:dir_cache . '/ctrlp'
+let s:file_tags = s:dir_cache . '/tags'
 let s:file_plug = s:dir_autoload . '/plug.vim'
 
 " function
@@ -159,8 +160,8 @@ set notimeout
 set ttimeout
 
 " tags
-" A trailing ";" indicates an upward search. Refer to :h file-searching for details.
-set tags+=./tags;
+call s:set_list_prepend('tags', s:file_tags)
+set tags+=./tags;   " A trailing ";" indicates an upward search
 
 " hardcopy
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:5pc
@@ -221,6 +222,22 @@ function! s:cmd_osc52(line1, line2) abort
     call echoraw(l:seq)
 endfunction
 command! -range=% OSC52 call s:cmd_osc52(<line1>, <line2>)
+
+" ctags
+function! s:cmd_ctags(...) abort
+    if !executable("ctags")
+        echo "ctags is not in PATH"
+        return
+    endif
+    call term_start(["ctags", "-f", s:file_tags, "--tag-relative=never"] + a:000)
+endfunction
+command! -nargs=* -complete=file Ctags call s:cmd_ctags(<f-args>)
+
+" ctags clear
+function! s:cmd_ctags_clear() abort
+    call delete(s:file_tags)
+endfunction
+command! CtagsClear call s:cmd_ctags_clear()
 
 " ----- mappings --------------------------------
 

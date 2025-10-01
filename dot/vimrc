@@ -224,14 +224,10 @@ endfunction
 command! -range=% OSC52 call s:cmd_osc52(<line1>, <line2>)
 
 " ctags
-function! s:cmd_ctags(...) abort
-    if !executable("ctags")
-        echo "ctags is not in PATH"
-        return
-    endif
-    call term_start(["ctags", "-f", s:file_tags, "--tag-relative=never"] + a:000)
+function! s:cmd_ctags(args) abort
+    execute "!ctags -f " .. shellescape(s:file_tags) .. " --tag-relative=never " .. a:args
 endfunction
-command! -nargs=* -complete=file Ctags call s:cmd_ctags(<f-args>)
+command! -nargs=* -complete=file Ctags call s:cmd_ctags(<q-args>)
 
 " ctags clear
 function! s:cmd_ctags_clear() abort

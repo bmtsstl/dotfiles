@@ -248,7 +248,7 @@ function! s:cmd_venv_activate() abort
         return
     endif
 
-    let l:dir_venv = finddir('.venv', '.;')
+    let l:dir_venv = finddir('.venv', ';')
     if empty(l:dir_venv)
         if executable('python')
             let l:exe_path = 'python'

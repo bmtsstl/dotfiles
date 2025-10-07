@@ -235,116 +235,6 @@ function! s:cmd_ctags_clear() abort
 endfunction
 command! CtagsClear call s:cmd_ctags_clear()
 
-" venv activate
-function! s:cmd_venv_activate() abort
-    if exists('$VIRTUAL_ENV')
-        echo 'venv: activated at ' .. $VIRTUAL_ENV
-        return
-    endif
-
-    let l:support_cmd = has('win32') && fnamemodify(&shell, ':t:r') ==# 'cmd'
-    if !l:support_cmd
-        echoerr 'venv: unsupported shell "' .. &shell .. '"'
-        return
-    endif
-
-    let l:dir_venv = finddir('.venv', ';')
-    if empty(l:dir_venv)
-        if executable('python')
-            let l:exe_path = 'python'
-        elseif executable('python3')
-            let l:exe_path = 'python3'
-        else
-            echoerr 'venv: python is not in $PATH'
-            return
-        endif
-
-        let l:dir_venv = fnamemodify('./.venv', ':p')
-        if confirm('venv: create at ' .. l:dir_venv .. ' ?', "&Yes\n&No", 1) !=# 1
-            return
-        endif
-
-        execute '!' .. l:exe_path .. ' -m venv --upgrade-deps ' .. shellescape(l:dir_venv, v:true)
-    endif
-
-    let l:dir_venv = fnamemodify(l:dir_venv, ':p')
-    let l:dir_venv = substitute(l:dir_venv, '\C[/\\]\+$', '', '')
-
-    let $VIRTUAL_ENV = l:dir_venv
-    if l:support_cmd
-        if !exists('$PROMPT')
-            let $PROMPT = '$P$G'
-        endif
-
-        if exists('$_OLD_VIRTUAL_PROMPT')
-            let $PROMPT = $_OLD_VIRTUAL_PROMPT
-        endif
-        if exists('$_OLD_VIRTUAL_PYTHONHOME')
-            let $PROMPT = $_OLD_VIRTUAL_PYTHONHOME
-        endif
-
-        let $_OLD_VIRTUAL_PROMPT = $PROMPT
-        let $PROMPT = '(.venv) ' .. $PROMPT
-
-        if exists('$PYTHONHOME')
-            let $_OLD_VIRTUAL_PYTHONHOME = $PYTHONHOME
-        endif
-        unlet $PYTHONHOME
-
-        if exists('$_OLD_VIRTUAL_PATH')
-            let $PATH = $_OLD_VIRTUAL_PATH
-        endif
-        if !exists('$_OLD_VIRTUAL_PATH')
-            let $_OLD_VIRTUAL_PATH = $PATH
-        endif
-
-        let $PATH = $VIRTUAL_ENV .. '\Scripts;' .. $PATH
-        let $VIRTUAL_ENV_PROMPT = '.venv'
-    endif
-
-    echo 'venv: activated at ' .. l:dir_venv
-endfunction
-command! VenvActivate call s:cmd_venv_activate()
-
-" venv deactivate
-function! s:cmd_venv_deactivate() abort
-    if has('win32') && fnamemodify(&shell, ':t:r') ==# 'cmd'
-        if exists('$_OLD_VIRTUAL_PROMPT')
-            let $PROMPT = $_OLD_VIRTUAL_PROMPT
-        endif
-        unlet $_OLD_VIRTUAL_PROMPT
-
-        if exists('$_OLD_VIRTUAL_PYTHONHOME')
-            let $PYTHONHOME = $_OLD_VIRTUAL_PYTHONHOME
-        endif
-        unlet $_OLD_VIRTUAL_PYTHONHOME
-
-        if exists('$_OLD_VIRTUAL_PATH')
-            let $PATH = $_OLD_VIRTUAL_PATH
-        endif
-        unlet $_OLD_VIRTUAL_PATH
-
-        unlet $VIRTUAL_ENV
-        unlet $VIRTUAL_ENV_PROMPT
-    else
-        echoerr 'venv: unsupported shell "' .. &shell .. '"'
-        return
-    endif
-
-    echo 'venv: deactivated'
-endfunction
-command! VenvDeactivate call s:cmd_venv_deactivate()
-
-" venv toggle
-function s:cmd_venv() abort
-    if !exists('$VIRTUAL_ENV')
-        call s:cmd_venv_activate()
-    else
-        call s:cmd_venv_deactivate()
-    endif
-endfunction
-command! Venv call s:cmd_venv()
-
 " ----- mappings --------------------------------
 
 let g:mapleader = "\<Space>"
@@ -406,6 +296,63 @@ autocmd vimrc BufWinEnter       *           call s:extra_whitespace_update()
 autocmd vimrc TerminalWinOpen   *           call s:extra_whitespace_update()
 autocmd vimrc OptionSet         modifiable  call s:extra_whitespace_update()
 autocmd vimrc ModeChanged       *:i*,i*:*   call s:extra_whitespace_update()
+
+" ----- venv ------------------------------------
+function! s:venv_activate_auto() abort
+    if !has('gui_running') || exists('$VIRTUAL_ENV')
+        return
+    endif
+
+    if has('win32') && fnamemodify(&shell, ':t:r') ==# 'cmd'
+        let l:shell = 'cmd'
+    else
+        return
+    endif
+
+    let l:dir_venv = finddir('.venv', ';')
+    if empty(l:dir_venv)
+        return
+    endif
+
+    let l:dir_venv = fnamemodify(l:dir_venv, ':p')
+    let l:dir_venv = substitute(l:dir_venv, '\C[/\\]\+$', '', '')
+
+    let $VIRTUAL_ENV = l:dir_venv
+    if l:shell ==# 'cmd'
+        if !exists('$PROMPT')
+            let $PROMPT = '$P$G'
+        endif
+
+        if exists('$_OLD_VIRTUAL_PROMPT')
+            let $PROMPT = $_OLD_VIRTUAL_PROMPT
+        endif
+        if exists('$_OLD_VIRTUAL_PYTHONHOME')
+            let $PROMPT = $_OLD_VIRTUAL_PYTHONHOME
+        endif
+
+        let $_OLD_VIRTUAL_PROMPT = $PROMPT
+        let $PROMPT = '(.venv) ' .. $PROMPT
+
+        if exists('$PYTHONHOME')
+            let $_OLD_VIRTUAL_PYTHONHOME = $PYTHONHOME
+        endif
+        unlet $PYTHONHOME
+
+        if exists('$_OLD_VIRTUAL_PATH')
+            let $PATH = $_OLD_VIRTUAL_PATH
+        endif
+        if !exists('$_OLD_VIRTUAL_PATH')
+            let $_OLD_VIRTUAL_PATH = $PATH
+        endif
+
+        let $PATH = $VIRTUAL_ENV .. '\Scripts;' .. $PATH
+        let $VIRTUAL_ENV_PROMPT = '.venv'
+    endif
+
+    " keep this autocmd outside the vimrc group to ensure it persists after gvimrc is sourced
+    autocmd SafeState * ++once echowindow 'venv: ' .. $VIRTUAL_ENV
+endfunction
+call s:venv_activate_auto()
 
 " ----- plugins ---------------------------------
 if !filereadable(s:file_plug) && executable('git') && executable('curl')

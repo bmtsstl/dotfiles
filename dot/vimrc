@@ -507,7 +507,7 @@ if filereadable(s:file_plug) && executable('git')
                 \ ])
         endif
     endfunction
-    autocmd User LspSetup call s:lsp_setup()
+    autocmd vimrc User LspSetup call s:lsp_setup()
 
     function! s:lsp_attached() abort
         setlocal keywordprg=:LspHover
@@ -519,7 +519,7 @@ if filereadable(s:file_plug) && executable('git')
             autocmd CursorMoved <buffer> silent! LspDiag! current
         augroup END
     endfunction
-    autocmd User LspAttached call s:lsp_attached()
+    autocmd vimrc User LspAttached call s:lsp_attached()
 
     " vim-code-dark
     Plug 'tomasiser/vim-code-dark'

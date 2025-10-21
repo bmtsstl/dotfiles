@@ -8,7 +8,8 @@ if type python3 &>/dev/null; then
         local VENV=${1:-"./.venv"}
         local VENV_ACTIVATE="${VENV}/bin/activate"
         if [ ! -d "${VENV}" ]; then
-            read -p 'Hit enter to create venv, or CTRL-C to cancel ...'
+            echo -n 'Hit enter to create venv, or CTRL-C to cancel ...'
+            read
             python3 -m venv "${VENV}" --upgrade-deps
             source "${VENV_ACTIVATE}"
             return 0

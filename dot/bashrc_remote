@@ -1,5 +1,3 @@
-unset HISTFILE
-
 if type python3 &>/dev/null; then
     venv () {
         if [ -n "${VIRTUAL_ENV}" ]; then

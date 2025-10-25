@@ -98,11 +98,17 @@ set guioptions-=b
 set guioptions-=F
 
 " font
-if has('gui_win32')
-    set guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
-    set guifont-=Consolas:h11 guifont^=Consolas:h11
-    set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
-    set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
+if has('gui_running')
+    if has('gui_win32')
+        set guifont-=MS_Gothic:h11 guifont^=MS_Gothic:h11
+        set guifont-=Consolas:h11 guifont^=Consolas:h11
+        set guifontwide-=MS_Gothic guifontwide^=MS_Gothic
+        set guifontwide-=BIZ_UDゴシック guifontwide^=BIZ_UDゴシック
+    elseif has('gui_gtk')
+        set guifont-=IPAGothic\ 12 guifont^=IPAGothic\ 12
+        set guifont-=BIZ\ UDGothic\ 12 guifont^=BIZ\ UDGothic\ 12
+        set guifont-=HackGen\ 12 guifont^=HackGen\ 12
+    endif
 endif
 
 " encoding & newline

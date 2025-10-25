@@ -87,7 +87,6 @@ endif
 
 " gui
 set guioptions+=!
-set guioptions-=a guioptions-=P guioptions-=A
 set guioptions+=c
 set guioptions-=e
 set guioptions-=m guioptions+=M
@@ -96,6 +95,11 @@ set guioptions-=r guioptions-=R
 set guioptions-=l guioptions-=L
 set guioptions-=b
 set guioptions-=F
+if has('gui_win32')
+    set guioptions-=a guioptions-=P guioptions-=A
+elseif has('gui_gtk')
+    set guioptions+=a guioptions-=P guioptions+=A
+endif
 
 " font
 if has('gui_running')

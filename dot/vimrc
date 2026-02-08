@@ -251,6 +251,7 @@ nnoremap <silent> <Leader>c :<C-u>cd %:h<CR>
 " osc52
 packadd osc52
 set clipmethod+=osc52
+let g:osc52_force_avail = v:true
 
 " vim
 let g:vim_indent_cont = 4

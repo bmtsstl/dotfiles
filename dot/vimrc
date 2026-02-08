@@ -222,17 +222,6 @@ function! s:cmd_maximize() abort
 endfunction
 command! Maximize call s:cmd_maximize()
 
-" osc52
-function! s:cmd_osc52(line1, line2) abort
-    let l:bufnr = bufnr()
-    let l:pos1 = [l:bufnr, a:line1, 1, 0]
-    let l:pos2 = [l:bufnr, a:line2, 1, 0]
-    let l:text = getregion(l:pos1, l:pos2, {"type": "V"}) + [""]
-    let l:seq = "\e]52;;" .. base64_encode(str2blob(l:text)) .. "\x07"
-    call echoraw(l:seq)
-endfunction
-command! -range=% OSC52 call s:cmd_osc52(<line1>, <line2>)
-
 " ctags
 function! s:cmd_ctags(args) abort
     execute "!ctags -f " .. shellescape(s:file_tags) .. " --tag-relative=never " .. a:args
@@ -257,7 +246,11 @@ nnoremap <silent> <Leader>m :<C-u>Maximize<CR>
 nnoremap <silent> <Leader>t :<C-u>tab split<CR>
 nnoremap <silent> <Leader>c :<C-u>cd %:h<CR>
 
-" ----- fileytpe specific settings --------------
+" ----- builtin plugins -------------------------
+
+" osc52
+packadd osc52
+set clipmethod+=osc52
 
 " vim
 let g:vim_indent_cont = 4

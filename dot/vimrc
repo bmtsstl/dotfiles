@@ -370,6 +370,11 @@ if filereadable(s:file_plug) && executable('git')
     call mkdir(s:dir_plug, 'p', 0700)
     call plug#begin(s:dir_plug)
 
+    " vim-sandwich
+    Plug 'machakann/vim-sandwich'
+    nnoremap s <Nop>
+    xnoremap s <Nop>
+
     " vaffle.vim
     Plug 'cocopon/vaffle.vim'
     let g:vaffle_force_delete = 1

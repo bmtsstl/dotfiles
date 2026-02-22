@@ -447,8 +447,10 @@ if filereadable(s:file_plug) && executable('git')
     let g:signify_priority = 0
 
     " ripgrep
-    Plug 'kyoh86/vim-ripgrep'
-    command! -nargs=+ -complete=file Rg :call ripgrep#search(<q-args>)
+    if executable('rg')
+        Plug 'kyoh86/vim-ripgrep'
+        command! -nargs=+ -complete=file Rg :call ripgrep#search(<q-args>)
+    endif
 
     " lsp
     Plug 'yegappan/lsp'

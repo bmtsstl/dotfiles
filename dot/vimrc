@@ -449,7 +449,15 @@ if filereadable(s:file_plug) && executable('git')
     " ripgrep
     if executable('rg')
         Plug 'kyoh86/vim-ripgrep'
-        command! -nargs=+ -complete=file Rg :call ripgrep#search(<q-args>)
+
+        function! s:ripgrep(arg) abort
+            let l:arg = a:arg
+            if empty(l:arg)
+                let l:arg = '-w "' .. expand('<cword>') .. '"'
+            endif
+            return ripgrep#search(l:arg)
+        endfunction
+        command! -nargs=* -complete=file Rg call s:ripgrep(<q-args>)
     endif
 
     " lsp

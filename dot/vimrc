@@ -255,6 +255,9 @@ if !has('gui_running') && !has("win32") && !has("osx")
     let g:osc52_force_avail = v:true
 endif
 
+" editorconfig
+packadd! editorconfig
+
 " vim
 let g:vim_indent_cont = 4
 
